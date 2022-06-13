@@ -1,0 +1,23 @@
+
+export const Images = {
+  success: require('../assets/success.png'),
+  calendar: require('../assets/calendar.png'),
+  arrowUp: require('../assets/arrow_up.png'),
+  correct: require('../assets/correct.png'),
+  upload: require('../assets/upload.png'),
+  jpgFile: require('../assets/jpg_file.png'),
+  preview: require('../assets/preview.png'),
+  delete: require('../assets/delete.png'),
+  loading: require('../assets/loading.png'),
+  refresh: require('../assets/refresh.png'),
+  close: require('../assets/close.png'),
+  greenCorrect: require('../assets/green_correct.png'),
+  blueInfo: require('../assets/blue_info.png'),
+  yellowInfo: require('../assets/yellow_info.png'),
+  redInfo: require('../assets/red_info.png'),
+  attachment: require('../assets/attachment.png'),
+  checked: require('../assets/checked.png'),
+  unchecked: require('../assets/unchecked.png'),
+  selected: require('../assets/selected.png'),
+  unselected: require('../assets/unselected.png'),
+}
