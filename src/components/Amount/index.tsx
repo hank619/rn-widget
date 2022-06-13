@@ -55,7 +55,7 @@ export function Amount(props: AmountProps) {
 export interface AmountProps {
   style: any;
   labelStyle?: any;
-  prefixStyle?: any,
+  prefixStyle?: any;
   textStyle?: any;
   invalidStyle?: any;
   currency: string;
