@@ -17,6 +17,7 @@ export * from './components/RadioGroup';
 export * from './components/Card';
 export * from './components/Loading';
 export * from './components/Step';
+export * from './components/Form';
 export { customTheme } from './theme';
 
 import {
