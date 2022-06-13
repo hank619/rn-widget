@@ -61,7 +61,7 @@ class FormStore extends Component {
   }
 
   submit = () => {
-    const onFinish = this.callbacks.onFinish;
+    const {onFinish} = this.callbacks;
     if (onFinish) {
       onFinish(this.stores);
     }

@@ -23,11 +23,23 @@ export default function Form(props: FormProps) {
     }
     mountedRef.current = true;
   }
+  
+  // find the button which trigger submit;
+  const mappedChildren = React.Children.map(children, (child) => {
+    if (child?.props?.action === 'submit') {
+      return React.cloneElement(child, {
+        onClick: () => {
+          formInstance.submit();
+        }
+      });
+    }
+    return child;
+  });
 
   return (
     <View>
       <FiledContext.Provider value={formInstance}>
-        {children}
+        {mappedChildren}
       </FiledContext.Provider>
     </View>
   );

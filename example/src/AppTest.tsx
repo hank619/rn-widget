@@ -5,7 +5,7 @@
  */
 import React from 'react';
 import { TextInput, Text  } from 'react-native';
-import { Field, Form } from 'rn-widget';
+import { Field, Form, Button } from 'rn-widget';
 
 export default function AppTest() {
   return (
@@ -15,11 +15,11 @@ export default function AppTest() {
       }}
     >
       <Text>test</Text>
-      <Field name="input">
+      <Field name="input" onChangePropsName='onChangeText'>
         <TextInput style={{backgroundColor: '#ff0000', margin: 30, height: 100}} />
       </Field>
       <Text>test</Text>
-
+      <Button.FWButton text='click' action='submit'/>
     </Form>
   )
 }

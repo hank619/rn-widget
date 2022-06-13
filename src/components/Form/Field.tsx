@@ -7,6 +7,7 @@ import type { Rules } from "async-validator";
 import invariant from "invariant";
 import React, { Component } from 'react';
 import FiledContext from "./FieldContext";
+import { get } from 'lodash';
 
 interface FieldProps {
   name: string;
@@ -14,6 +15,7 @@ interface FieldProps {
   rules?: Rules;
   valuePropsName?: string;
   onChangePropsName?: string;
+  eventPropsName?: string;
 }
 
 export default class Field extends Component<FieldProps> {
@@ -25,6 +27,7 @@ export default class Field extends Component<FieldProps> {
   children: React.ReactElement;
   valuePropsName: string;;
   onChangePropsName: string;
+  eventPropsName: string;
 
   constructor(props: FieldProps) {
     super(props);
@@ -35,6 +38,7 @@ export default class Field extends Component<FieldProps> {
     this.rules = props.rules;
     this.valuePropsName = props.valuePropsName || "value";
     this.onChangePropsName = props.onChangePropsName || "onChange";
+    this.eventPropsName = props.eventPropsName || "";
   }
 
   componentDidMount() {
@@ -47,7 +51,9 @@ export default class Field extends Component<FieldProps> {
     return {
       ...childProps,
       [`${this.valuePropsName}`]: getFieldValue(this.name),
-      [`${this.onChangePropsName}`]: (event: any) => setFieldValue(this.name, event.target.value),
+      [`${this.onChangePropsName}`]: (event: any) => {
+        setFieldValue(this.name, get(event, this.eventPropsName, event));
+      },
     }
   }
 
