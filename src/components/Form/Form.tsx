@@ -26,8 +26,9 @@ export default function Form(props: FormProps) {
   
   // find the button which trigger submit;
   const mappedChildren = React.Children.map(children, (child) => {
-    if (child?.props?.action === 'submit') {
-      return React.cloneElement(child, {
+    const transferredChild = child as any;
+    if (transferredChild?.props?.action === 'submit') {
+      return React.cloneElement(transferredChild, {
         onClick: () => {
           formInstance.submit();
         }
