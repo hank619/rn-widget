@@ -15,7 +15,7 @@ export default function AppTest() {
       }}
     >
       <Text>test</Text>
-      <Field name="input" onChangePropsName='onChangeText'>
+      <Field name="input" onChangePropsName='onChangeText' rule={{type: 'string', required: true}}>
         <TextInput style={{backgroundColor: '#ff0000', margin: 30, height: 100}} />
       </Field>
       <Text>test</Text>

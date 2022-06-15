@@ -3,16 +3,22 @@
  * @Date: 2022-06-13 14:31:13
  * @Description: 
  */
-import type { Rules } from "async-validator";
+import type { Rule } from "async-validator";
 import invariant from "invariant";
 import React, { Component } from 'react';
 import FiledContext from "./FieldContext";
+import { View, Text } from 'react-native';
 import { get } from 'lodash';
+import styles from './Field.style';
 
 interface FieldProps {
   name: string;
+  label?: string;
+  validateStatus?: 'success' | 'error' | 'warning';
+  help?: string;
+  extra?: string;
   children: React.ReactElement;
-  rules?: Rules;
+  rule?: Rule;
   valuePropsName?: string;
   onChangePropsName?: string;
   eventPropsName?: string;
@@ -23,7 +29,11 @@ export default class Field extends Component<FieldProps> {
   static contextType = FiledContext;
 
   name: string;
-  rules?: Rules;
+  label?: string;
+  validateStatus?: string;
+  help?: string;
+  extra?: string;
+  rule?: Rule;
   children: React.ReactElement;
   valuePropsName: string;;
   onChangePropsName: string;
@@ -34,8 +44,12 @@ export default class Field extends Component<FieldProps> {
     invariant(!!props.name, "name in filed is required");
     invariant(!!props.children && React.isValidElement(props?.children), "children in filed is not valid");
     this.name = props.name;
+    this.label = props.label;
+    this.validateStatus = props.validateStatus;
+    this.help = props.help;
+    this.extra = props.extra;
+    this.rule = props.rule;
     this.children = props.children;
-    this.rules = props.rules;
     this.valuePropsName = props.valuePropsName || "value";
     this.onChangePropsName = props.onChangePropsName || "onChange";
     this.eventPropsName = props.eventPropsName || "";
@@ -57,11 +71,38 @@ export default class Field extends Component<FieldProps> {
     }
   }
 
+  onStoreChange = () => {
+    this.forceUpdate();
+  }
+
   render() {
+    const { getFieldError } = this.context;
+    const isStringExtra = typeof this.extra === 'string';
+    const fieldError = getFieldError(this.name);
+    const firstError = fieldError?.[0];
+    const validateStatus = firstError ? 'error': this.validateStatus;
+    const help = firstError?.message || this.help;
+
     return (
-      <>
-        {React.cloneElement(this.children, this.getControlled(this.children.props))}
-      </>
+      <View>
+        {this.label && <Text style={styles.label}>{this.label}</Text>}
+        <>
+          {React.cloneElement(this.children, this.getControlled(this.children.props))}
+        </>
+
+        {!!validateStatus && validateStatus !== 'success' && !!help && (
+          // @ts-ignore
+          <Text style={styles[validateStatus]}>
+            {help}
+          </Text>
+        )}
+        {!!this.extra && isStringExtra && (
+          <Text style={styles.extra}>{this.extra}</Text>
+        )}
+        <>
+          {!!this.extra && !isStringExtra && (this.extra)}
+        </>
+      </View>
     )
   }
 }

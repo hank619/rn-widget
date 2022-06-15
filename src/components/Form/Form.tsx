@@ -9,7 +9,7 @@ import FiledContext from "./FieldContext";
 import useForm from "./useForm";
 
 export default function Form(props: FormProps) {
-  const { initialValues, onFinish, children } = props;
+  const { initialValues, onFinish, onFinishFailed, children } = props;
   
   const [formInstance] = useForm();
   const mountedRef = useRef(false);
@@ -17,6 +17,7 @@ export default function Form(props: FormProps) {
   if (!mountedRef.current) {
     formInstance.setCallbacks({
       onFinish,
+      onFinishFailed,
     });
     if (initialValues) {
       formInstance.setInitialValues(initialValues);
@@ -48,6 +49,7 @@ export default function Form(props: FormProps) {
 
 interface FormProps {
   initialValues?: any,
-  onFinish: Function;
+  onFinish?: Function;
+  onFinishFailed?: Function;
   children?: React.ReactNode;
 }
