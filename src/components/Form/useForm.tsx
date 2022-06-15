@@ -77,6 +77,9 @@ class FormStore extends Component {
     this.stores = {
       ...values,
     }
+    Object.keys(values).forEach(name => {
+      this.touched[name] = true;
+    });
   }
 
   getFieldError = (name: string) => {
@@ -114,6 +117,10 @@ class FormStore extends Component {
         field.onStoreChange();
       }
     });
+  }
+
+  getTouched = (name: string) => {
+    return this.touched[name];
   }
 
   getValidator = (descriptor: any) => {
@@ -158,6 +165,7 @@ class FormStore extends Component {
       setCallbacks: this.setCallbacks,
       setInitialValues: this.setInitialValues,
       getFieldError: this.getFieldError,
+      getTouched: this.getTouched,
       submit: this.submit,
     };
   }
@@ -172,6 +180,7 @@ export interface FormInstance {
   setCallbacks: Function;
   setInitialValues: Function;
   getFieldError: Function;
+  getTouched: Function;
   submit: Function;
 }
 

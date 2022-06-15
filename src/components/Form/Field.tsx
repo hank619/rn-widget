@@ -77,6 +77,8 @@ export default class Field extends Component<FieldProps> {
         },
       });
     }
+    const [ status ] = this.getStatus();
+    cloneProps.status = status;
     return cloneProps;
   }
 
@@ -84,14 +86,26 @@ export default class Field extends Component<FieldProps> {
     this.forceUpdate();
   }
 
-  render() {
+  getStatus = () => {
     // can use field individualy without form
-    const { getFieldError } = this.context || {};
+    const isInsideOfForm = !!this.context;
+    let validateStatus, help;
+    if (isInsideOfForm) {
+      const { getFieldError, getTouched } = this.context;
+      const fieldError = getFieldError?.(this.name);
+      const firstError = fieldError?.[0];
+      validateStatus = firstError ? 'error': getTouched(this.name) ? 'success' : null;
+      help = firstError?.message;
+    } else {
+      validateStatus= this.validateStatus;
+      help = this.help;
+    }
+    return [validateStatus, help]
+  }
+
+  render() {
     const isStringExtra = typeof this.extra === 'string';
-    const fieldError = getFieldError?.(this.name);
-    const firstError = fieldError?.[0];
-    const validateStatus = firstError ? 'error': this.validateStatus;
-    const help = firstError?.message || this.help;
+    const [ validateStatus, help ] = this.getStatus();
 
     return (
       <View>

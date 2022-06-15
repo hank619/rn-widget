@@ -5,7 +5,7 @@
  */
 import React from 'react';
 import { TextInput, Text  } from 'react-native';
-import { Field, Form, Button } from 'rn-widget';
+import { Field, Form, Button, Input } from 'rn-widget';
 
 export default function AppTest() {
   return (
@@ -18,8 +18,9 @@ export default function AppTest() {
       }}
     >
       <Text>test</Text>
-      <Field name="input" onChangePropsName='onChangeText' rule={{type: 'string', required: true}}>
-        <TextInput style={{backgroundColor: '#ff0000', margin: 30, height: 100}} />
+      <Field name="input" rule={{type: 'string', required: true}}>
+        {/* <TextInput style={{backgroundColor: '#eeeeee', margin: 30, height: 100}} /> */}
+        <Input />
       </Field>
       <Text>test</Text>
       <Button.FWButton text='click' action='submit'/>

@@ -8,9 +8,6 @@ import { StyleSheet } from "react-native";
 import { Colors, TypeFaces } from "../../theme";
 
 export default StyleSheet.create({
-  label: {
-    ...TypeFaces.body1,
-  },
   inputContainer: {
     width: '100%',
     height: 48,
@@ -55,8 +52,13 @@ export default StyleSheet.create({
   blur: {
     borderColor: Colors.fog,
   },
+  success: {
+  },
   error: {
     borderColor: Colors.red,
+  },
+  warning: {
+    borderColor: Colors.yellow,
   },
   disabled: {
     backgroundColor: Colors.ice,
@@ -69,15 +71,4 @@ export default StyleSheet.create({
     alignSelf: 'center',
     right: 18,
   },
-  invalid: {
-    marginTop: 7,
-    ...TypeFaces.body2,
-    color: Colors.red,
-  },
-  description: {
-    marginTop: 26,
-    ...TypeFaces.body3,
-    fontWeight: '500',
-    color: Colors.stone,
-  }
 })
