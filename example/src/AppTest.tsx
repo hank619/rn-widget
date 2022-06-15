@@ -61,16 +61,16 @@ export default function AppTest() {
         <Upload 
           includeBase64
           uploadMethod={(asset, uuid) => {
-            return new Promise((resolve) => {
+            return new Promise((resolve, reject) => {
               setTimeout(() => {
-                resolve({
-                  url: getUrlFromAsset(asset),
-                  uuid
-                });
-                // reject({
-                //   error: 'failure',
+                // resolve({
+                //   url: getUrlFromAsset(asset),
                 //   uuid
                 // });
+                reject({
+                  error: 'failure',
+                  uuid
+                });
               }, 1000);
             });
           }}

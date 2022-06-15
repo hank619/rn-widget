@@ -30,6 +30,7 @@ export type UploadInstance = {
 export default function Upload(props: UploadProps) {
   const { 
     maxNumber = 1, 
+    status,
     onChange, 
     uploadMethod, 
     uploadText, 
@@ -160,7 +161,11 @@ export default function Upload(props: UploadProps) {
     >
       <View style={[styles.widgetContainer, style]}>
         <TouchableOpacity onPress={pick}>
-          <View style={styles.uploadContainer}>
+          <View style={[
+            styles.uploadContainer,
+            // @ts-ignore
+            status && status !== 'success' && styles[status],
+          ]}>
             <Image source={Images.upload} style={styles.uploadImage} />
             <Text style={[styles.uploadText, textStyle]}>
               {uploadText || 'Upload a photo'}
@@ -211,6 +216,7 @@ export default function Upload(props: UploadProps) {
 
 export interface UploadProps {
   style?: any;
+  status?: 'loading' | 'success' | 'fail';
   maxNumber?: number;
   onChange?: (pics: any[]) => void;
   uploadMethod: (asset: Asset ,uuid: string) => Promise<any>;
