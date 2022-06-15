@@ -5,7 +5,7 @@
  */
 import React from 'react';
 import { Text } from 'react-native';
-import { Amount, Button, Checkbox, Field, Form, Input, RadioGroup, TextArea } from 'rn-widget';
+import { Amount, Button, Checkbox, Field, Form, Input, RadioGroup, TextArea, Upload } from 'rn-widget';
 
 export default function AppTest() {
   return (
@@ -51,6 +51,9 @@ export default function AppTest() {
             }
           ]}
         />
+      </Field>
+      <Field name='upload' >
+        <Upload />
       </Field>
       <Text>test</Text>
       <Button.FWButton text='click' action='submit'/>
