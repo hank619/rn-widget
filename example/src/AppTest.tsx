@@ -4,8 +4,8 @@
  * @Description: 
  */
 import React from 'react';
-import { TextInput, Text  } from 'react-native';
-import { Field, Form, Button, Input } from 'rn-widget';
+import { Text } from 'react-native';
+import { Button, Field, Form, Input, TextArea } from 'rn-widget';
 
 export default function AppTest() {
   return (
@@ -21,6 +21,9 @@ export default function AppTest() {
       <Field name="input" rule={{type: 'string', required: true}}>
         {/* <TextInput style={{backgroundColor: '#eeeeee', margin: 30, height: 100}} /> */}
         <Input />
+      </Field>
+      <Field name='textarea' rule={{type: 'string', required: true}}>
+        <TextArea />
       </Field>
       <Text>test</Text>
       <Button.FWButton text='click' action='submit'/>

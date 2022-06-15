@@ -3,20 +3,16 @@
  * @Date: 2021-11-02 14:36:53
  * @Description:
  */
-import { Alert, Amount, Button, DatePicker, 
-  Input, Phone, Preview, Select, Status, TextArea, Upload, 
-  Fold, Dialog, Checkbox, RadioGroup, Card, Loading, Step
-} from 'rn-widget';
 import React from 'react';
-import { SafeAreaView, ScrollView, Text } from 'react-native';
+import { SafeAreaView, ScrollView } from 'react-native';
 import type { Asset } from 'react-native-image-picker';
 import SimpleToast from 'react-native-simple-toast';
+import { Alert, Amount, Button, Card, Checkbox, DatePicker, Dialog, Fold, Input, Loading, Preview, RadioGroup, Select, Status, Step, TextArea, Upload } from 'rn-widget';
 import styles from './style';
 
 export default function App() {
   const [input, setInput] = React.useState('');
   const [amount, setAmount] = React.useState('');
-  const [phone, setPhone] = React.useState('');
   const [textArea, setTextArea] = React.useState('');
   const [, setDate] = React.useState<Date>();
   const [showDialog, setShowDialog] = React.useState(false);
@@ -59,13 +55,11 @@ export default function App() {
         
         <Input
           style={{ width: 300 }}
-          label={'Input'}
           prefix={'THB'}
           error={'invalid input'}
           value={input}
           onChange={(text) => setInput(text)}
           placeholder={'Input text'}
-          description={<Text>test</Text>}
         />
         <Amount
           style={{ width: 300 }}
@@ -75,17 +69,8 @@ export default function App() {
           value={amount}
           onChange={(text) => setAmount(text)}
         />
-        <Phone
-          style={{ width: 300 }}
-          countryCode={'+86'}
-          label={'Phone'}
-          error={'invalid phone number'}
-          value={phone}
-          onChange={(text) => setPhone(text)}
-        />
         <TextArea
           style={{ width: 300 }}
-          label={'TextArea'}
           error={'invalid text'}
           value={textArea}
           placeholder={'Input text'}
