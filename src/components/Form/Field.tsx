@@ -8,7 +8,7 @@ import invariant from "invariant";
 import React, { Component } from 'react';
 import FiledContext from "./FieldContext";
 import { View, Text } from 'react-native';
-import { get } from 'lodash';
+import { cloneDeep, get } from 'lodash';
 import styles from './Field.style';
 
 interface FieldProps {
@@ -64,19 +64,20 @@ export default class Field extends Component<FieldProps> {
 
   getControlled = (childProps: any) => {
     const { getFieldValue, setFieldValue } = this.context || {};
+    const cloneProps = cloneDeep(childProps);
     if (getFieldValue) {
-      Object.assign(childProps, {
+      Object.assign(cloneProps, {
         [`${this.valuePropsName}`]: getFieldValue(this.name),
       });
     }
     if (setFieldValue) {
-      Object.assign(childProps, {
+      Object.assign(cloneProps, {
         [`${this.onChangePropsName}`]: (event: any) => {
           setFieldValue(this.name, get(event, this.eventPropsName, event));
         },
       });
     }
-    return childProps;
+    return cloneProps;
   }
 
   onStoreChange = () => {
