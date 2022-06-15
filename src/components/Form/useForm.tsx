@@ -49,9 +49,10 @@ class FormStore extends Component {
     if (!forceUpdateField) {
       return;
     }
-    const validator = this.getValidator({
+    const descriptor = forceUpdateField.rule ? {
       [name]: forceUpdateField.rule,
-    });
+    } : {};
+    const validator = this.getValidator(descriptor);
     validator.validate({ [name]: value})
       .then(() => {
         this.setFieldError(name, undefined);
@@ -124,6 +125,7 @@ class FormStore extends Component {
   }
 
   getValidator = (descriptor: any) => {
+    console.log(`descriptor = `, descriptor);
     return new Schema(descriptor);
   }
 
