@@ -9,17 +9,20 @@ import { Field, Form, Button } from 'rn-widget';
 
 export default function AppTest() {
   return (
-    <Form
-      onFinish={(values: any) => {
-        console.log(values);
-      }}
-    >
+    // <Form
+    //   onFinish={(values: any) => {
+    //     console.log(values);
+    //   }}
+    // >
+    <>
       <Text>test</Text>
-      <Field name="input" onChangePropsName='onChangeText' rule={{type: 'string', required: true}}>
+      <Field name="input" onChangePropsName='onChangeText' rule={{type: 'string', required: true}} >
         <TextInput style={{backgroundColor: '#ff0000', margin: 30, height: 100}} />
       </Field>
       <Text>test</Text>
       <Button.FWButton text='click' action='submit'/>
-    </Form>
+    </>
+      
+    // </Form>
   )
 }

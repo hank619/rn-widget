@@ -56,19 +56,27 @@ export default class Field extends Component<FieldProps> {
   }
 
   componentDidMount() {
-    const { registerField } = this.context;
-    registerField(this);
+    const { registerField } = this.context || {};
+    if (registerField) {
+      registerField(this);
+    }
   }
 
   getControlled = (childProps: any) => {
-    const { getFieldValue, setFieldValue } = this.context;
-    return {
-      ...childProps,
-      [`${this.valuePropsName}`]: getFieldValue(this.name),
-      [`${this.onChangePropsName}`]: (event: any) => {
-        setFieldValue(this.name, get(event, this.eventPropsName, event));
-      },
+    const { getFieldValue, setFieldValue } = this.context || {};
+    if (getFieldValue) {
+      Object.assign(childProps, {
+        [`${this.valuePropsName}`]: getFieldValue(this.name),
+      });
     }
+    if (setFieldValue) {
+      Object.assign(childProps, {
+        [`${this.onChangePropsName}`]: (event: any) => {
+          setFieldValue(this.name, get(event, this.eventPropsName, event));
+        },
+      });
+    }
+    return childProps;
   }
 
   onStoreChange = () => {
@@ -76,9 +84,10 @@ export default class Field extends Component<FieldProps> {
   }
 
   render() {
-    const { getFieldError } = this.context;
+    // can use field individualy without form
+    const { getFieldError } = this.context || {};
     const isStringExtra = typeof this.extra === 'string';
-    const fieldError = getFieldError(this.name);
+    const fieldError = getFieldError?.(this.name);
     const firstError = fieldError?.[0];
     const validateStatus = firstError ? 'error': this.validateStatus;
     const help = firstError?.message || this.help;
