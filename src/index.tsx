@@ -1,5 +1,4 @@
 export * from './components/Amount';
-export * from './components/Email';
 export * from './components/Input';
 export * from './components/Phone';
 export * from './components/DatePicker';

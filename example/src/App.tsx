@@ -3,7 +3,7 @@
  * @Date: 2021-11-02 14:36:53
  * @Description:
  */
-import { Alert, Amount, Button, DatePicker, Email, 
+import { Alert, Amount, Button, DatePicker, 
   Input, Phone, Preview, Select, Status, TextArea, Upload, 
   Fold, Dialog, Checkbox, RadioGroup, Card, Loading, Step
 } from 'rn-widget';
@@ -17,7 +17,6 @@ export default function App() {
   const [input, setInput] = React.useState('');
   const [amount, setAmount] = React.useState('');
   const [phone, setPhone] = React.useState('');
-  const [email, setEmail] = React.useState('');
   const [textArea, setTextArea] = React.useState('');
   const [, setDate] = React.useState<Date>();
   const [showDialog, setShowDialog] = React.useState(false);
@@ -83,14 +82,6 @@ export default function App() {
           error={'invalid phone number'}
           value={phone}
           onChange={(text) => setPhone(text)}
-        />
-        <Email
-          style={{ width: 300 }}
-          label={'Email'}
-          error={'invalid email address'}
-          value={email}
-          onChange={(text) => setEmail(text)}
-          placeholder={'placeholder@example.com'}
         />
         <TextArea
           style={{ width: 300 }}
