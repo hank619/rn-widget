@@ -125,7 +125,6 @@ class FormStore extends Component {
   }
 
   getValidator = (descriptor: any) => {
-    console.log(`descriptor = `, descriptor);
     return new Schema(descriptor);
   }
 
