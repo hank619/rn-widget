@@ -5,7 +5,7 @@
  */
 import React from 'react';
 import { Text } from 'react-native';
-import { Amount, Button, Field, Form, Input, TextArea } from 'rn-widget';
+import { Amount, Button, Checkbox, Field, Form, Input, TextArea } from 'rn-widget';
 
 export default function AppTest() {
   return (
@@ -28,6 +28,13 @@ export default function AppTest() {
       </Field>
       <Field name='amount' rule={{type: 'string', required: true}}>
         <Amount  currency='PHP' />
+      </Field>
+      <Field name='checkbox' rule={{
+        validator: (_, value: any) => {
+          return !!value;
+        }
+      }}>
+        <Checkbox content='plse check me' />
       </Field>
       <Text>test</Text>
       <Button.FWButton text='click' action='submit'/>

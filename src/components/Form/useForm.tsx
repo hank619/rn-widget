@@ -58,7 +58,7 @@ class FormStore extends Component {
         this.setFieldError(name, undefined);
         this.notifyUpdate([name]);
       })
-      .catch(({_, fields}) => {
+      .catch(({fields}) => {
         this.setFieldError(name, fields[name])
       }); 
   }
