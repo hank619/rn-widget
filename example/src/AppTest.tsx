@@ -5,7 +5,7 @@
  */
 import React from 'react';
 import { Text } from 'react-native';
-import { Amount, Button, Checkbox, Field, Form, Input, TextArea } from 'rn-widget';
+import { Amount, Button, Checkbox, Field, Form, Input, RadioGroup, TextArea } from 'rn-widget';
 
 export default function AppTest() {
   return (
@@ -16,6 +16,8 @@ export default function AppTest() {
       initialValues={{
         input: '123',
         amount: '12313',
+        checkbox: true,
+        radiogroup: 'option 2',
       }}
     >
       <Text>test</Text>
@@ -35,6 +37,20 @@ export default function AppTest() {
         }
       }}>
         <Checkbox content='plse check me' />
+      </Field>
+      <Field name='radiogroup' rule={{type: 'string', required: true}}>
+        <RadioGroup 
+          options={[
+            {
+              label: 'option 1',
+              value: 'option 1',
+            },
+            {
+              label: 'option 2',
+              value: 'option 2',
+            }
+          ]}
+        />
       </Field>
       <Text>test</Text>
       <Button.FWButton text='click' action='submit'/>
