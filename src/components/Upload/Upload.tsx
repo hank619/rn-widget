@@ -3,11 +3,6 @@
  * @Date: 2022-06-15 18:01:12
  * @Description: 
  */
-/*
- * @Author: Hong.Zhang
- * @Date: 2022-06-15 18:01:12
- * @Description: 
- */
 import React, { useEffect, useState } from 'react';
 import {
   Image, Modal, Text, TouchableOpacity, TouchableWithoutFeedback, View
@@ -27,6 +22,11 @@ export type UploadInstance = {
   refresh: Function,
 }
 
+/**
+ * Upload can not accept value props because there is inner status of pics like file size, upload status, etc.
+ * @param props 
+ * @returns 
+ */
 export default function Upload(props: UploadProps) {
   const { 
     maxNumber = 1, 
@@ -41,9 +41,11 @@ export default function Upload(props: UploadProps) {
   } = props;
   const [pics, setPics] = useState<Item[]>([]);
   const [showPreview, setShowPreview] = useState(false);
+  const [touched, setTouched] = useState(false);
   const [previewItem, setPreviewItem] = useState<Item|null>();
 
   async function pick() {
+    setTouched(true);
     if (!!maxNumber && maxNumber <= pics.length) {
       SimpleToast.show(
         `Can only upload at most ${maxNumber} pictures`);
@@ -133,7 +135,7 @@ export default function Upload(props: UploadProps) {
   }
 
   useEffect(() => {
-    if (onChange) {
+    if (onChange && touched) {
       /**
        * Can not filtered pics here to return success pics only, it will cause infinity loop. The flow is like this:
        *  1. everytime it filter, it will generate a new array
@@ -145,7 +147,8 @@ export default function Upload(props: UploadProps) {
        */
       onChange(pics);
     }
-  }, [pics, onChange]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pics]);
 
   return (
     <UploadContext.Provider

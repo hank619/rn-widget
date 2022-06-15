@@ -5,6 +5,7 @@
  */
 import React from 'react';
 import { Text } from 'react-native';
+import type { Asset } from 'react-native-image-picker';
 import { Amount, Button, Checkbox, Field, Form, Input, RadioGroup, TextArea, Upload } from 'rn-widget';
 
 export default function AppTest() {
@@ -52,11 +53,35 @@ export default function AppTest() {
           ]}
         />
       </Field>
-      <Field name='upload' >
-        <Upload />
+      <Field name='upload' rule={{
+        validator: (_, value: any) => {
+          return !!value && value.length > 0 && !value.find((item: any) => item.status === 'fail');
+        }
+      }}>
+        <Upload 
+          includeBase64
+          uploadMethod={(asset, uuid) => {
+            return new Promise((resolve) => {
+              setTimeout(() => {
+                resolve({
+                  url: getUrlFromAsset(asset),
+                  uuid
+                });
+                // reject({
+                //   error: 'failure',
+                //   uuid
+                // });
+              }, 1000);
+            });
+          }}
+        />
       </Field>
       <Text>test</Text>
       <Button.FWButton text='click' action='submit'/>
     </Form>
   )
+}
+
+function getUrlFromAsset(asset: Asset) {
+  return `data:image/png;base64,${asset.base64}`;
 }
