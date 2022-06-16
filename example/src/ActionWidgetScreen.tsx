@@ -10,7 +10,7 @@ import type { Asset } from 'react-native-image-picker';
 import { Amount, Button, Checkbox, DatePicker, Field, Form, Input, RadioGroup, Select, TextArea, Upload } from 'rn-widget';
 import styles from './style';
 
-export default function AppTest() {
+export default function ActionWidgetScreen() {
 
   return (
     <SafeAreaView>
