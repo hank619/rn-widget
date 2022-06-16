@@ -6,7 +6,7 @@
 import React from 'react';
 import { Text } from 'react-native';
 import type { Asset } from 'react-native-image-picker';
-import { Amount, Button, Checkbox, Field, Form, Input, RadioGroup, Select, TextArea, Upload } from 'rn-widget';
+import { Amount, Button, Checkbox, DatePicker, Field, Form, Input, RadioGroup, Select, TextArea, Upload } from 'rn-widget';
 
 export default function AppTest() {
   return (
@@ -89,6 +89,9 @@ export default function AppTest() {
             });
           }}
         />
+      </Field>
+      <Field name='datepicker' rule={{ required: true}}>
+        <DatePicker />
       </Field>
       <Text>test</Text>
       <Button.FWButton text='click' action='submit'/>

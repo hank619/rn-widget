@@ -3,39 +3,36 @@
  * @Date: 2021-11-04 16:39:23
  * @Description: 
  */
-import React, { useEffect, useState } from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  SafeAreaView,
-} from 'react-native';
-import { Images } from '../../theme'
 import DateTimePicker from '@react-native-community/datetimepicker';
 import moment from 'moment';
-import styles from './style';
+import React, { useState } from 'react';
+import {
+  Image,
+  SafeAreaView, Text,
+  TouchableOpacity, View
+} from 'react-native';
+import { Images } from '../../theme';
 import type { DatePickerProps } from './index';
+import styles from './style';
 
 export function DatePickerAndroid(props: DatePickerProps) {
-  const { onChange, maximumDate, style, labelStyle, textStyle, label } = props;
+  const { value, status, onChange, maximumDate, style, textStyle } = props;
   const [showCalendar, setShowCalendar] = useState(false);
-  const [date, setDate] = useState(new Date());
 
   function click() {
     setShowCalendar(true);
   }
 
-  useEffect(() => {
-    onChange(date);
-  }, [date, onChange]);
-
   return (
     <TouchableOpacity onPress={click}>
-      {label && <Text style={[styles.label, labelStyle]}>{label}</Text>}
-      <View style={[styles.dateContainer, style]}>
+      <View style={[
+        styles.dateContainer,
+        // @ts-ignore
+        status && status !== 'success' && styles[status],
+        style,
+      ]}>
         <Text style={[styles.dateText, textStyle]}>
-          {date ? moment(date).format('DD / MM / YYYY') : 'DD / MM / YYYY'}
+          {value ? value.format('DD / MM / YYYY') : 'DD / MM / YYYY'}
         </Text>
         <Image style={styles.dateIcon} source={Images.calendar} />
         {showCalendar && (
@@ -43,14 +40,14 @@ export function DatePickerAndroid(props: DatePickerProps) {
             <SafeAreaView style={styles.safeArea}>
               <DateTimePicker
                 display="spinner"
-                value={date || new Date()}
+                value={value?.toDate() || new Date()}
                 onChange={(_: any, d?: Date) => {
                   setShowCalendar(false);
-                  if (d) {
-                    setDate(d);
+                  if (d && onChange) {
+                    onChange(moment(d));
                   }
                 }}
-                maximumDate={maximumDate}
+                maximumDate={maximumDate?.toDate()}
               />
             </SafeAreaView>
           </View>

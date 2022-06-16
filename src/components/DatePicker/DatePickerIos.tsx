@@ -1,13 +1,13 @@
 /*
  * @Author: Hong.Zhang
  * @Date: 2021-06-29 17:50:39
- * @LastEditTime: 2021-12-15 16:13:14
+ * @LastEditTime: 2022-06-16 15:55:11
  * @LastEditors: Please set LastEditors
  * @Description:
  */
 import DateTimePicker from '@react-native-community/datetimepicker';
 import moment from 'moment';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Image, Modal, SafeAreaView, Text,
   TouchableOpacity, View
@@ -18,37 +18,36 @@ import styles from './style';
 
 
 export function DatePickerIos(props: DatePickerProps) {
-  const { onChange, maximumDate, style, labelStyle, textStyle, label } = props;
+  const { value, status, onChange, maximumDate, style, textStyle } = props;
   const [showCalendar, setShowCalendar] = useState(false);
-  const [date, setDate] = useState(new Date());
 
   function click() {
     setShowCalendar(true);
   }
 
-  useEffect(() => {
-    onChange(date);
-  }, [date, onChange]);
-
   return (
     <TouchableOpacity onPress={click}>
-      {label && <Text style={[styles.label, labelStyle]}>{label}</Text>}
-      <View style={[styles.dateContainer, style]}>
+      <View style={[
+        styles.dateContainer,
+        // @ts-ignore
+        status && status !== 'success' && styles[status],
+        style,
+      ]}>
         <Text style={[styles.dateText, textStyle]}>
-          {date ? moment(date).format('DD / MM / YYYY') : 'DD / MM / YYYY'}
+          {value ? value.format('DD / MM / YYYY') : 'DD / MM / YYYY'}
         </Text>
         <Image style={styles.dateIcon} source={Images.calendar} />
         <Modal visible={showCalendar}>
           <SafeAreaView style={styles.safeArea}>
             <DateTimePicker
               display="spinner"
-              value={date || new Date()}
+              value={value?.toDate() || new Date()}
               onChange={(_: any, d?: Date) => {
-                if (d) {
-                  setDate(d);
+                if (d && onChange) {
+                  onChange(moment(d));
                 }
               }}
-              maximumDate={maximumDate}
+              maximumDate={maximumDate?.toDate()}
             />
             <TouchableOpacity
               style={styles.confirmContainer}
