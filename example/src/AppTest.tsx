@@ -6,7 +6,7 @@
 import React from 'react';
 import { Text } from 'react-native';
 import type { Asset } from 'react-native-image-picker';
-import { Amount, Button, Checkbox, Field, Form, Input, RadioGroup, TextArea, Upload } from 'rn-widget';
+import { Amount, Button, Checkbox, Field, Form, Input, RadioGroup, Select, TextArea, Upload } from 'rn-widget';
 
 export default function AppTest() {
   return (
@@ -42,6 +42,20 @@ export default function AppTest() {
       <Field name='radiogroup' rule={{type: 'string', required: true}}>
         <RadioGroup 
           options={[
+            {
+              label: 'option 1',
+              value: 'option 1',
+            },
+            {
+              label: 'option 2',
+              value: 'option 2',
+            }
+          ]}
+        />
+      </Field>
+      <Field name='select' rule={{type: 'string', required: true}}>
+        <Select 
+          items={[
             {
               label: 'option 1',
               value: 'option 1',

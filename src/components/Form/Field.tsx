@@ -7,7 +7,7 @@ import type { Rule } from "async-validator";
 import invariant from "invariant";
 import React, { Component } from 'react';
 import FiledContext from "./FieldContext";
-import { View, Text } from 'react-native';
+import { View, Text, Platform } from 'react-native';
 import { cloneDeep, get } from 'lodash';
 import styles from './Field.style';
 
@@ -106,9 +106,16 @@ export default class Field extends Component<FieldProps> {
   render() {
     const isStringExtra = typeof this.extra === 'string';
     const [ validateStatus, help ] = this.getStatus();
+    // @ts-ignore
+    const isSelectElement = this.children.type?.name === 'Select';
+    const isAndroid = Platform.OS === 'android';
 
     return (
-      <View>
+      // hack logic here for Select element, since Select required zIndex, and the parent has to add zIndex as well
+      <View style={[
+        isSelectElement && isAndroid && styles.androidContainer,
+        isSelectElement && !isAndroid && styles.iosContainer,
+      ]}>
         {this.label && <Text style={styles.label}>{this.label}</Text>}
         <>
           {React.cloneElement(this.children, this.getControlled(this.children.props))}

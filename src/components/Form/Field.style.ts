@@ -20,4 +20,9 @@ export default StyleSheet.create({
   warning: {
     color: Colors.yellow,
   },
+  iosContainer: {
+    zIndex: 10,
+  },
+  androidContainer: {
+  },
 });

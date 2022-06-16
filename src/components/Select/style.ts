@@ -37,6 +37,10 @@ export default StyleSheet.create({
   blur: {
     borderColor: Colors.fog,
   },
+  success: {},
+  warning: {
+    borderColor: Colors.yellow,
+  },
   error: {
     borderColor: Colors.red,
   },
