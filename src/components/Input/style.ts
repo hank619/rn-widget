@@ -12,7 +12,6 @@ export default StyleSheet.create({
     width: '100%',
     height: 48,
     flexDirection: "row",
-    marginTop: 9,
   },
   prefixContainer: {
     backgroundColor: Colors.ice,

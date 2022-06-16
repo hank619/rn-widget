@@ -6,14 +6,12 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  container: {
+  actionWidgtContainer: {
+    paddingHorizontal: 12,
+  },
+  displayWidgetContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#fff',
-  },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
   },
 });

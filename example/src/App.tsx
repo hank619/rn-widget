@@ -5,16 +5,11 @@
  */
 import React from 'react';
 import { SafeAreaView, ScrollView } from 'react-native';
-import type { Asset } from 'react-native-image-picker';
 import SimpleToast from 'react-native-simple-toast';
-import { Alert, Amount, Button, Card, Checkbox, DatePicker, Dialog, Fold, Input, Loading, Preview, RadioGroup, Select, Status, Step, TextArea, Upload } from 'rn-widget';
+import { Alert, Button, Card, Dialog, Fold, Loading, Preview, Status, Step } from 'rn-widget';
 import styles from './style';
 
 export default function App() {
-  const [input, setInput] = React.useState('');
-  const [amount, setAmount] = React.useState('');
-  const [textArea, setTextArea] = React.useState('');
-  const [, setDate] = React.useState<Date>();
   const [showDialog, setShowDialog] = React.useState(false);
   const previewFiles = [
     'https://raw.githubusercontent.com/matrixyf/pictureRepo/main/20211202181724.png',
@@ -22,68 +17,10 @@ export default function App() {
     'https://raw.githubusercontent.com/matrixyf/pictureRepo/main/20211202181828.png'
   ]
 
-  const items = [
-    {label: 'Apple', value: 'apple'},
-    {label: 'Banana', value: 'banana'}
-  ];
-  const [checkedValue, setCheckedValue] = React.useState(false);
-  const [radioValue, setRadioValue] = React.useState('');
-  const [province, setProvince] = React.useState('');
-
-  const allProvinceOptions = [
-    { label: 'Johor', value: 'Johor' },
-    { label: 'Kedah', value: 'Kedah' },
-    { label: 'Kelantan', value: 'Kelantan' },
-    { label: 'Kuala Lumpur', value: 'Kuala Lumpur' },
-    { label: 'Labuan', value: 'Labuan' },
-    { label: 'Melaka', value: 'Melaka' },
-    { label: 'Negeri Sembilan', value: 'Negeri Sembilan' },
-    { label: 'Pahang', value: 'Pahang' },
-    { label: 'Penang', value: 'Penang' },
-    { label: 'Perak', value: 'Perak' },
-    { label: 'Perlis', value: 'Perlis' },
-    { label: 'Putrajaya', value: 'Putrajaya' },
-    { label: 'Sabah', value: 'Sabah' },
-    { label: 'Sarawak', value: 'Sarawak' },
-    { label: 'Selangor', value: 'Selangor' },
-    { label: 'Terengganu', value: 'Terengganu' },
-  ];
-
   return (
     <SafeAreaView>
-        <ScrollView contentContainerStyle={styles.container}>
+        <ScrollView contentContainerStyle={styles.displayWidgetContainer}>
         
-        <Input
-          style={{ width: 300 }}
-          prefix={'THB'}
-          error={'invalid input'}
-          value={input}
-          onChange={(text) => setInput(text)}
-          placeholder={'Input text'}
-        />
-        <Amount
-          style={{ width: 300 }}
-          currency={'MR'}
-          label={'Amount'}
-          error={'invalid amount'}
-          value={amount}
-          onChange={(text) => setAmount(text)}
-        />
-        <TextArea
-          style={{ width: 300 }}
-          error={'invalid text'}
-          value={textArea}
-          placeholder={'Input text'}
-          onChange={(text) => setTextArea(text)}
-        />
-        <DatePicker
-          label={'Date'}
-          style={{ width: 300 }}
-          onChange={d => {
-            setDate(d);
-          }}
-          maximumDate={new Date()}
-        />
         <Button 
           text={'Base Button'}
           containerStyle={{ width: 300, height: 50, borderwidth: 1, borederColor: '#ccc', backgroundColor: '#f00', borderRadius: 20 }}
@@ -144,47 +81,8 @@ export default function App() {
           type={'invalid'}
           status={'ENDING STATUS'}
         />
-        <Upload
-          label={'Upload Success'}
-          style={{ width: 300 }}
-          maxNumber={10}
-          includeBase64
-          uploadMethod={(asset, uuid) => {
-            return new Promise((resolve) => {
-              setTimeout(() => {
-                resolve({
-                  url: getUrlFromAsset(asset),
-                  uuid
-                });
-              }, 1000);
-            });
-          }}
-        />
-        <Upload
-          label={'Upload Fail'}
-          style={{ width: 300 }}
-          maxNumber={10}
-          includeBase64
-          uploadMethod={(_, uuid) => {
-            return new Promise((_, reject) => {
-              setTimeout(() => {
-                reject({
-                  error: 'failure',
-                  uuid
-                });
-              }, 5000);
-            });
-          }}
-        />
         <Preview 
           files={previewFiles}
-        />
-        <Select
-          style={{ width: 300 }}
-          value={province}
-          onChange={setProvince}
-          items={allProvinceOptions}
-          label={'Province'}
         />
         <Alert
           style={{ width: 300 }}
@@ -227,20 +125,6 @@ export default function App() {
           cancelText={'Cancel'}
           onCancel={() => SimpleToast.show('Cancel')}
         />
-        <Checkbox
-          style={{ width: 300}}
-          value={checkedValue}
-          onChange={setCheckedValue}
-          content={'I have read and agree to Policy Terms & Conditions. '}
-        />
-        <RadioGroup
-          style={{ width: 300 }}
-          value={radioValue}
-          onChange={(_, v) => {
-            setRadioValue(v);
-          }}
-          options={items}
-        />
         <Card 
           title={'Location Selection'}
         >
@@ -268,8 +152,4 @@ export default function App() {
       </ScrollView>
     </SafeAreaView>
   );
-}
-
-function getUrlFromAsset(asset: Asset) {
-  return `data:image/png;base64,${asset.base64}`;
 }

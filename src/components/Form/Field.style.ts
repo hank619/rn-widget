@@ -4,6 +4,7 @@ import { Colors, TypeFaces } from "../../theme";
 export default StyleSheet.create({
   label: {
     ...TypeFaces.body1,
+    marginVertical: 8,
   },
   extra: {
     marginTop: 26,
