@@ -44,6 +44,7 @@ export function FWButton(props: FWButtonProps) {
 }
 
 export interface FWButtonProps {
+  action?: 'submit';
   style?: any;
   textStyle?: any;
   text?: string;

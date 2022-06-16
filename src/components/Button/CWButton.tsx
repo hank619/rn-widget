@@ -44,6 +44,7 @@ export function CWButton(props: FWButtonProps) {
 }
 
 export interface FWButtonProps {
+  action?: 'submit';
   style?: any;
   text?: string;
   children?: ReactNode;

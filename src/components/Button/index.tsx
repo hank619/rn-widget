@@ -40,6 +40,7 @@ const Button = (props: ButtonProps) => {
 }
 
 interface ButtonProps {
+  action?: 'submit';
   containerStyle?: any;
   textStyle?: any;
   text?: string;
