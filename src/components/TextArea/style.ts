@@ -11,10 +11,6 @@ export default StyleSheet.create({
   container: {
     width: "100%",
   },
-  label: {
-    ...TypeFaces.body1,
-    marginBottom: 9,
-  },
   input: {
     ...TypeFaces.body1,
     width: "100%",
@@ -32,8 +28,13 @@ export default StyleSheet.create({
   blur: {
     borderColor: Colors.fog,
   },
+  success: {
+  },
   error: {
     borderColor: Colors.red,
+  },
+  warning: {
+    borderColor: Colors.yellow,
   },
   disabled: {
     backgroundColor: Colors.ice,
@@ -55,11 +56,4 @@ export default StyleSheet.create({
     ...TypeFaces.body2,
     color: Colors.grantie,
   },
-  description: {
-    width: '100%',
-    marginTop: 6,
-    ...TypeFaces.body2,
-    color: Colors.stone,
-    fontStyle: 'italic',
-  }
 })

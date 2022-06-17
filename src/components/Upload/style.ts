@@ -1,7 +1,7 @@
 /*
  * @Author: Hong.Zhang
  * @Date: 2021-06-18 13:19:40
- * @LastEditTime: 2021-12-13 18:38:22
+ * @LastEditTime: 2022-06-15 19:08:51
  * @LastEditors: Please set LastEditors
  * @Description:
  */
@@ -11,10 +11,6 @@ import { Colors, TypeFaces } from '../../theme';
 export default StyleSheet.create({
   widgetContainer: {
     width: '100%',
-  },
-  label: {
-    ...TypeFaces.body1,
-    marginBottom: 9,
   },
   uploadContainer: {
     width: '100%',
@@ -28,19 +24,20 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  success: {
+  },
+  error: {
+    borderColor: Colors.red,
+  },
+  warning: {
+    borderColor: Colors.yellow,
+  },
   uploadImage: {},
   uploadText: {
     marginLeft: 16,
     ...TypeFaces.body1,
     fontWeight: '500',
     color: Colors.black,
-  },
-  description: {
-    width: '100%',
-    marginTop: 6,
-    ...TypeFaces.body2,
-    color: Colors.stone,
-    fontStyle: 'italic',
   },
   uploadLoadingContainer: {
     top: 0,

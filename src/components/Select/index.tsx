@@ -11,19 +11,15 @@ import styles from './style';
 export function Select(props: SelectProps) {
   const {
     style,
-    labelStyle,
-    label,
-    error = `${label} can not be empty`,
+    status,
     value,
     textStyle,
     onChange,
     items,
-    invalidStyle,
     disabled,
   } = props;
 
   const [focused, setFocused] = React.useState(false);
-  const [valid ,setValid] = React.useState(true);
   const [expand, setExpand] = React.useState<boolean|undefined>();
   const [yInParent , setYInParent] = React.useState(0);
   const [direction, setDirection] = React.useState('top');
@@ -34,10 +30,7 @@ export function Select(props: SelectProps) {
 
   useEffect(() => {
     setFocused(!!expand);
-    if (expand !== undefined) {
-      setValid(!!value || expand);
-    }
-  }, [expand, value]);
+  }, [expand]);
 
   async function toggleSelect() {
     if (guidelineRef.current) {
@@ -61,7 +54,9 @@ export function Select(props: SelectProps) {
       return (
         <TouchableWithoutFeedback
           onPress={() => {
-            onChange(item.value);
+            if (onChange) {
+              onChange(item.value);
+            }
             setExpand(false);
           }}
           key={item.value}
@@ -81,25 +76,26 @@ export function Select(props: SelectProps) {
 
   return (
     <View ref={parentRef} style={[isAndroid ? styles.androidContainer: styles.iosContainer, style]}>
-      {label && <Text style={[styles.label, labelStyle]}>{label}</Text>}
       <TouchableWithoutFeedback
         onPress={toggleSelect}
       >
-        <View style={[styles.selectContainer]} >
+        <View style={[styles.selectContainer]}>
           <Text
             style={[
               styles.content,
-              !valid ? styles.error : focused ? styles.focused : styles.blur,
+              focused ? styles.focused : styles.blur,
               expand && isDirectionTop && styles.expandTop,
               expand && !isDirectionTop && styles.expandBototm,
+              // @ts-ignore
+              status && status !== 'success' && styles[status],
               disabled ? styles.disabled : styles.enabled,
               textStyle,
             ]}
           >
             {value}
           </Text>
-          <Image 
-            source={Images.arrowUp} 
+          <Image
+            source={Images.arrowUp}
             style={expand ? styles.arrowUp : styles.arrowReverse}
           />
         </View>
@@ -115,21 +111,17 @@ export function Select(props: SelectProps) {
             {getDropdown()}
           </ScrollView>
         </View>
-      )}
-      {!valid && <Text style={[styles.invalid, invalidStyle]}>{error}</Text>}
+     )}
     </View>
   );
 }
 
 export interface SelectProps {
   style?: any;
-  labelStyle?: any;
-  label?: string;
-  error?: string;
-  value: string;
-  onChange: (value: string) => void;
+  status?: 'error' | 'success' | 'warning';
+  value?: string;
+  onChange?: (value: string) => void;
   items: { label: string, value: string }[];
   disabled?: boolean;
   textStyle?: any;
-  invalidStyle?: any;
 }

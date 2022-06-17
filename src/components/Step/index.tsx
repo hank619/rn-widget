@@ -20,6 +20,7 @@ export function Step(props: StepProps) {
           index={index} 
           current={current} 
           style={itemStyle}
+          key={index}
         />
       )}
     </View>

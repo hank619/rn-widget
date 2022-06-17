@@ -3,68 +3,54 @@
  * @Date: 2021-11-04 14:33:28
  * @Description:
  */
+import React from 'react';
 import { Input } from 'rn-widget';
-import React, { ReactNode } from 'react';
 import { primePrice, thousandPrice } from '../../util/price';
 
 export function Amount(props: AmountProps) {
   const { 
     style,
-    labelStyle,
+    status,
     currency, 
     value, 
     onChange, 
-    error, 
-    label, 
     disabled, 
-    descrition,
-    descritionStyle,
     prefixStyle,
     textStyle,
-    invalidStyle,
     returnKeyType
   } = props;
 
-  function amountOnChange(amount: string, valid: boolean) {
+  function amountOnChange(amount: string) {
     const localeAmount = thousandPrice(primePrice(amount));
-    onChange(localeAmount, valid);
+    if (onChange) {
+      onChange(localeAmount);
+    }
   }
 
   return (
     <Input
       style={style}
-      labelStyle={labelStyle}
-      label={label}
-      value={value}
+      status={status}
+      value={value ? thousandPrice(primePrice(value)): ''}
       onChange={amountOnChange}
-      error={error}
       prefix={currency}
-      reg={/^[0-9,]+(.[0-9]{1,2})?$/}
       keyboardType="numeric"
       disabled={disabled}
-      description={descrition}
-      descriptionStyle={descritionStyle}
       prefixStyle={prefixStyle}
       textStyle={textStyle}
-      invalidStyle={invalidStyle}
       returnKeyType={returnKeyType}
     />
   );
 }
 
 export interface AmountProps {
-  style: any;
-  labelStyle?: any;
+  style?: any;
+  status?: 'success' | 'error' | 'warning';
   prefixStyle?: any;
   textStyle?: any;
-  invalidStyle?: any;
   currency: string;
-  value: string;
-  onChange: (value: string, valid: boolean) => void;
-  error?: string;
-  label?: string;
+  value?: string;
+  onChange?: (value: string) => void;
   disabled?: boolean;
-  descrition?: string | ReactNode;
-  descritionStyle?: any;
   returnKeyType?: 'done' | 'go' | 'next' | 'search' | 'send';
 }

@@ -13,14 +13,10 @@ export default StyleSheet.create({
   },
   androidContainer: {
   },
-  label: {
-    ...TypeFaces.body1,
-  },
   selectContainer: {
     width: '100%',
     height: 48,
     flexDirection: "row",
-    marginTop: 9,
   },
   content: {
     paddingHorizontal: 16,
@@ -36,6 +32,10 @@ export default StyleSheet.create({
   },
   blur: {
     borderColor: Colors.fog,
+  },
+  success: {},
+  warning: {
+    borderColor: Colors.yellow,
   },
   error: {
     borderColor: Colors.red,

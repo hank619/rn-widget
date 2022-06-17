@@ -18,7 +18,13 @@ export function RadioGroup(props: RadioGroupProps) {
         const isSelected = option.value === value;
         const isFirst = index === 0;
         return (
-          <TouchableWithoutFeedback key={index} onPress={() => onChange(option.label, option.value)}>
+          <TouchableWithoutFeedback 
+            key={index} 
+            onPress={() => {
+              if (onChange) {
+                onChange(option.value)
+              }
+            }}>
             <View style={[styles.itemContainer, isSelected ? styles.selected: styles.unselected, isFirst ? styles.first: styles.notFirst]}>
               <Text style={[styles.text, textStyle]}>{option.label}</Text>
               <Image style={[styles.image, isSelected ? styles.imageSelected: styles.imageUnselected]} source={isSelected ? Images.selected: Images.unselected}/>
@@ -33,7 +39,7 @@ export function RadioGroup(props: RadioGroupProps) {
 export interface RadioGroupProps {
   style?: any;
   textStyle?: any;
-  value: any;
-  onChange: (label: string, value: string) => void;
+  value?: any;
+  onChange?: (value: string) => void;
   options: Array<{ label: string, value: string }>;
 }

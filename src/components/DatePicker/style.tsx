@@ -7,9 +7,6 @@ import { StyleSheet } from 'react-native';
 import { Colors, TypeFaces } from '../../theme';
 
 export default StyleSheet.create({
-  label: {
-    ...TypeFaces.body1,
-  },
   dateContainer: {
     display: 'flex',
     height: 48,
@@ -21,6 +18,13 @@ export default StyleSheet.create({
     paddingRight: 16,
     paddingLeft: 16,
     borderRadius: 4,
+  },
+  success: {},
+  error: {
+    borderColor: Colors.red,
+  },
+  warning: {
+    borderColor: Colors.yellow,
   },
   dateText: {
     ...TypeFaces.body1,

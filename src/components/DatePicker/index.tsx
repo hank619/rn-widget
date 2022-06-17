@@ -7,6 +7,7 @@ import { Platform } from "react-native";
 import { DatePickerIos } from "./DatePickerIos";
 import React from "react";
 import { DatePickerAndroid } from "./DatePickerAndroid";
+import type { Moment } from "moment";
 
 export function DatePicker(props: DatePickerProps) {
   if (Platform.OS === "ios") {
@@ -18,10 +19,10 @@ export function DatePicker(props: DatePickerProps) {
 }
 
 export interface DatePickerProps {
-  onChange: (date?: Date) => void;
-  maximumDate?: Date;
+  value?: Moment;
+  status?: 'error' | 'success' | 'warning';
+  onChange?: (moment?: Moment) => void;
+  maximumDate?: Moment;
   style?: any;
-  labelStyle?: any;
   textStyle?: any;
-  label?: string;
 }

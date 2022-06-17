@@ -19,6 +19,14 @@ export default StyleSheet.create({
     flex: 1,
     alignSelf: 'center'
   },
+  success: {
+  },
+  error: {
+    tintColor: Colors.red,
+  },
+  warning: {
+    tintColor: Colors.yellow,
+  },
   content: {
     width: '100%',
     ...TypeFaces.body3,
