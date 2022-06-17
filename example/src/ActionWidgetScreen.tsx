@@ -19,13 +19,18 @@ export default function ActionWidgetScreen() {
       >
         <Form
           onFinish={(values: any) => {
-            console.log(values);
+            console.log(`values = `, values);
+          }}
+          onFinishFailed={({errors, values}: {errors: any, values: any}) => {
+            console.log(`errors = `, errors);
+            console.log(`values = `, values);
           }}
           initialValues={{
             input: '123',
             amount: '12313',
             checkbox: true,
-            radiogroup: 'option 2',
+            radiogroup: 'option 1',
+            select: 'option 2',
             datepicker: moment(),
           }}
         >
@@ -103,7 +108,7 @@ export default function ActionWidgetScreen() {
             <Upload 
               includeBase64
               uploadMethod={(_, uuid) => {
-                return new Promise((_, reject) => {
+                return new Promise((__, reject) => {
                   setTimeout(() => {
                     reject({
                       error: 'failure',
