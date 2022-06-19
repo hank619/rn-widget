@@ -63,13 +63,13 @@ export interface DialogProps {
   style?: any;
   title?: string;
   titleStyle?: any;
-  contentStyle?: any;
-  cancelStyle?: any;
-  okStyle?: any;
   content?: string;
+  contentStyle?: any;
   children?: React.ReactNode;
   okText?: string;
+  okStyle?: any;
   cancelText?: string;
+  cancelStyle?: any;
   onOk?: () => void;
   onCancel?: () => void;
   touchOutsideCancellable?: boolean;

@@ -22,8 +22,8 @@ export function Item(props: ItemProps) {
 }
 
 interface ItemProps {
-  label: string;
   style?: any;
+  label: string;
   labelStyle?: any,
   value?: string | ReactNode;
   valueStyle?: any;

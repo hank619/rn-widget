@@ -24,8 +24,8 @@ export function CWButton(props: FWButtonProps) {
 
   if (disabled) {
     return (
-      <View style={[styles.cwContainer, styles.cwContainerDisabled]}>
-        {finalText && <Text style={[styles.cwText, styles.cwTextDisabled, style]}>{finalText}</Text>}
+      <View style={[styles.cwContainer, styles.cwContainerDisabled, style]}>
+        {finalText && <Text style={[styles.cwText, styles.cwTextDisabled]}>{finalText}</Text>}
         <>
           {!finalText && children}
         </>
