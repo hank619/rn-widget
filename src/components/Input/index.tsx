@@ -75,15 +75,14 @@ export function Input(props: InputProps) {
 
 export interface InputProps {
   style?: any;
+  status?: 'success' | 'error' | 'warning';
   prefix?: string;
   prefixStyle?: any,
   textStyle?: any;
-  error?: string;
   value?: string;
   onChange?: (value: string) => void;
   placeholder?: string;
   disabled?: boolean;
   keyboardType?: TextInputProps['keyboardType'];
   returnKeyType?: 'done' | 'go' | 'next' | 'search' | 'send';
-  status?: 'success' | 'error' | 'warning';
 }

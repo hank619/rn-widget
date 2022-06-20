@@ -34,26 +34,26 @@ export default function ActionWidgetScreen() {
             datepicker: moment(),
           }}
         >
-          <Field label="Input" name="input" rule={{type: 'string', required: true}}>
+          <Field style={{marginTop: 400}} label="Input" name="input" rule={{type: 'string', required: true}}>
             <Input />
           </Field>
-          <Field label="Amount" name='amount' rule={{type: 'string', required: true}}>
+          <Field style={{marginTop: 400}} label="Amount" name='amount' rule={{type: 'string', required: true}}>
             <Amount  currency='PHP' />
           </Field>
-          <Field label="TextArea" name='textarea' rule={{type: 'string', required: true}}>
-            <TextArea />
+          <Field style={{marginTop: 400}} label="TextArea" name='textarea' rule={{type: 'string', required: true}}>
+            <TextArea showCount />
           </Field>
-          <Field label="DatePicker"  name='datepicker' rule={{ required: true}}>
+          <Field style={{marginTop: 400}} label="DatePicker"  name='datepicker' rule={{ required: true}}>
             <DatePicker />
           </Field>
-          <Field label="Checkbox" name='checkbox' rule={{
+          <Field style={{marginTop: 400}} label="Checkbox" name='checkbox' rule={{
             validator: (_, value: any) => {
               return !!value;
             }
           }}>
             <Checkbox content='plse check me' />
           </Field>
-          <Field label="RadioGroup" name='radiogroup' rule={{type: 'string', required: true}}>
+          <Field style={{marginTop: 400}} label="RadioGroup" name='radiogroup' rule={{type: 'string', required: true}}>
             <RadioGroup 
               options={[
                 {
@@ -67,9 +67,9 @@ export default function ActionWidgetScreen() {
               ]}
             />
           </Field>
-          <Field label="Select"  name='select' rule={{type: 'string', required: true}}>
+          <Field style={{marginTop: 400}} label="Select"  name='select' rule={{type: 'string', required: true}}>
             <Select 
-              items={[
+              options={[
                 {
                   label: 'option 1',
                   value: 'option 1',
@@ -81,7 +81,7 @@ export default function ActionWidgetScreen() {
               ]}
             />
           </Field>
-          <Field label="UploadSuccess" name='uploadSuccess' rule={{
+          <Field style={{marginTop: 400}} label="UploadSuccess" name='uploadSuccess' rule={{
             validator: (_, value: any) => {
               return !!value && value.length > 0 && !value.find((item: any) => item.status === 'fail');
             }
@@ -100,7 +100,7 @@ export default function ActionWidgetScreen() {
               }}
             />
           </Field>
-          <Field label="UploadFailed" name='uploadFailed' rule={{
+          <Field style={{marginTop: 400}} label="UploadFailed" name='uploadFailed' rule={{
             validator: (_, value: any) => {
               return !!value && value.length > 0 && !value.find((item: any) => item.status === 'fail');
             }
@@ -119,7 +119,7 @@ export default function ActionWidgetScreen() {
               }}
             />
           </Field>
-          <Button.FWButton text='click' action='submit'/>
+          <Button.FWButton text='click' action='submit' style={{marginTop: 30}}/>
         </Form>
       </ScrollView>
     </SafeAreaView>

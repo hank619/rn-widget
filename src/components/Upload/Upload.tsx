@@ -221,9 +221,9 @@ export interface UploadProps {
   onChange?: (pics: any[]) => void;
   uploadMethod: (asset: Asset ,uuid: string) => Promise<any>;
   uploadText?: any;
+  textStyle?: any;
   // in most case, doesn't use this prop, it's mainly usage is to do local demo, file uri is recommended than this.
   includeBase64?: boolean;
-  textStyle?: any;
   fileNameStyle?: any;
   fileSizeStyle?: any;
 }

@@ -7,16 +7,14 @@ An React Native UI library
 ```sh
 npm install rn-widget
 ```
+OR
+```sh
+yarn add rn-widget
+```
 
 ## Usage
 
-```js
-import { RnWidgetView } from "rn-widget";
-
-// ...
-
-<RnWidgetView color="tomato" />
-```
+Please refer to our official [webset](https://rn-widget-doc.vercel.app/)
 
 ## Contributing
 

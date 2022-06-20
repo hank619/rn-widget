@@ -22,6 +22,7 @@ interface FieldProps {
   valuePropsName?: string;
   onChangePropsName?: string;
   eventPropsName?: string;
+  style?: any;
 }
 
 export default class Field extends Component<FieldProps> {
@@ -38,6 +39,7 @@ export default class Field extends Component<FieldProps> {
   valuePropsName: string;;
   onChangePropsName: string;
   eventPropsName: string;
+  style?: any;
 
   constructor(props: FieldProps) {
     super(props);
@@ -53,6 +55,7 @@ export default class Field extends Component<FieldProps> {
     this.valuePropsName = props.valuePropsName || "value";
     this.onChangePropsName = props.onChangePropsName || "onChange";
     this.eventPropsName = props.eventPropsName || "";
+    this.style = props.style;
   }
 
   componentDidMount() {
@@ -115,6 +118,7 @@ export default class Field extends Component<FieldProps> {
       <View style={[
         isSelectElement && isAndroid && styles.androidContainer,
         isSelectElement && !isAndroid && styles.iosContainer,
+        this.style,
       ]}>
         {this.label && <Text style={styles.label}>{this.label}</Text>}
         <>

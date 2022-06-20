@@ -15,7 +15,7 @@ export function Select(props: SelectProps) {
     value,
     textStyle,
     onChange,
-    items,
+    options,
     disabled,
   } = props;
 
@@ -49,23 +49,23 @@ export function Select(props: SelectProps) {
   }
 
   function getDropdown() {
-    return items.map((item, _) => {
-      const selected = item.value === value;
+    return options.map((option, _) => {
+      const selected = option.value === value;
       return (
         <TouchableWithoutFeedback
           onPress={() => {
             if (onChange) {
-              onChange(item.value);
+              onChange(option.value);
             }
             setExpand(false);
           }}
-          key={item.value}
+          key={option.value}
         >
           <View 
             style={[styles.itemContainer, selected ? styles.selected : styles.notSelected]}
           >
             <Text style={[styles.itemText, textStyle]}>
-              {item.label}
+              {option.label}
             </Text>
             {selected && <Image source={Images.correct} style={styles.itemImage}/>}
           </View>
@@ -121,7 +121,7 @@ export interface SelectProps {
   status?: 'error' | 'success' | 'warning';
   value?: string;
   onChange?: (value: string) => void;
-  items: { label: string, value: string }[];
-  disabled?: boolean;
+  options: { label: string, value: string }[];
   textStyle?: any;
+  disabled?: boolean;
 }

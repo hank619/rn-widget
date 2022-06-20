@@ -46,9 +46,9 @@ export interface CheckboxProps {
   style?: any;
   status?: 'success' | 'error' | 'warning';
   value?: boolean;
-  textStyle?: any;
   onChange?: (checked: boolean) => void;
   content?: string | ReactNode;
+  textStyle?: any;
   checkedColor?: string;
   uncheckedColor?: string;
 }

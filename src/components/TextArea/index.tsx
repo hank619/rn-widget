@@ -3,7 +3,7 @@
  * @Date: 2021-11-02 15:55:09
  * @Description:
  */
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { Text, TextInput, View } from 'react-native';
 import styles from './style';
 
@@ -72,12 +72,11 @@ export interface TextAreaProps {
   status?: 'success' | 'error' | 'warning';
   value?: string;
   textStyle?: any;
-  countStyle?: any;
   onChange?: (value: string) => void;
   placeholder?: string;
+  countStyle?: any;
   disabled?: boolean;
   maxLength?: number;
-  description?: string | ReactNode;
   showCount?: boolean,
   returnKeyType?: 'done' | 'go' | 'next' | 'search' | 'send';
 }

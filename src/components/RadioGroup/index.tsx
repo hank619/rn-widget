@@ -9,6 +9,11 @@ import { View, Text, TouchableWithoutFeedback, Image } from "react-native";
 import React from "react";
 import { Images } from "../../theme";
 
+/**
+ * RadioGroup has no status props since we didn't design the error status of it.
+ * @param props 
+ * @returns 
+ */
 export function RadioGroup(props: RadioGroupProps) {
   const { style, textStyle, value, onChange, options } = props;
 
