@@ -14,7 +14,7 @@ yarn add rn-widget
 
 ## Usage
 
-Please refer to our official [webset](https://rn-widget-doc.vercel.app/)
+Please refer to our official [website](https://rn-widget-doc.vercel.app/)
 
 ## Contributing
 
