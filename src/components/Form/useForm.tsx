@@ -3,9 +3,11 @@
  * @Date: 2022-06-13 14:34:59
  * @Description: 
  */
-import { Component, useRef } from "react";
+import React, { Component, useRef } from "react";
 import type Field from './Field';
 import Schema from 'async-validator';
+import invariant from "invariant";
+import { checkLoopDependencies } from "../../util/utils";
 
 class FormStore extends Component {
 
@@ -14,6 +16,7 @@ class FormStore extends Component {
   callbacks: any;
   touched: any;
   errors: any;
+  dependenciesGraph: any;
 
   constructor(props?: any) {
     super(props);
@@ -22,6 +25,7 @@ class FormStore extends Component {
     this.callbacks = {};
     this.touched = {};
     this.errors = {};
+    this.dependenciesGraph = {};
   }
 
   getFieldValue = (name: string) => {
@@ -60,11 +64,58 @@ class FormStore extends Component {
       })
       .catch(({fields}) => {
         this.setFieldError(name, fields[name])
-      }); 
+      });
+
+    // check depency chain one by one
+    // 1. for Select, clear the value for it;
+    // 2. for other widget, set the original value just to trigger validate and notifyUpdate;
+    if (!!this.dependenciesGraph[name] && this.dependenciesGraph[name].length > 0) {
+      const dependencies = this.dependenciesGraph[name];
+      dependencies.forEach((dependency: string) => {
+        const dependencyField = this.fieldEntities.find(field => field.name === dependency);
+        let isSelect = false;
+        React.Children.forEach(dependencyField, (child) => {
+          const transferredChild = child as any;
+          if (transferredChild?.type?.name === 'Select') {
+            isSelect = true;
+          }
+        });
+        if (isSelect) {
+          this.setFieldValue(dependency, undefined);
+        } else {
+          this.setFieldValue(dependency, this.stores[dependency]);
+        }
+      });
+    }
   }
 
   registerField = (field: Field) => {
+    this.checkUniqueName(field);
     this.fieldEntities.push(field);
+    this.handleDependencies(field);
+  }
+
+  checkUniqueName = (field: Field) => {
+    const { name } = field;
+    const duplicate = this.fieldEntities.some(entity => entity.name === name);
+    invariant(!!name && !duplicate, `field name ${name} is duplicated`);
+  }
+
+  handleDependencies = (field: Field) => {
+    const { name, dependencies } = field;
+    if (!dependencies || dependencies.length === 0) {
+      return;
+    }
+    // name: a, dependencies: [b, c]
+    dependencies.forEach(dependency => {
+      if (!this.dependenciesGraph[dependency]) {
+        this.dependenciesGraph[dependency] = [];
+      } else {
+        this.dependenciesGraph[dependency].push(name);
+      }
+    });
+    // dependenciesGraph = { b: [a], c: [a]}
+    checkLoopDependencies(this.dependenciesGraph);
   }
 
   setCallbacks = (callbacks: any) => {

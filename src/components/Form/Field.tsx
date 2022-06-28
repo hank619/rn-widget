@@ -23,6 +23,7 @@ interface FieldProps {
   onChangePropsName?: string;
   eventPropsName?: string;
   style?: any;
+  dependencies?: string[];
 }
 
 export default class Field extends Component<FieldProps> {
@@ -40,6 +41,7 @@ export default class Field extends Component<FieldProps> {
   onChangePropsName: string;
   eventPropsName: string;
   style?: any;
+  dependencies?: string[];
 
   constructor(props: FieldProps) {
     super(props);
@@ -56,6 +58,7 @@ export default class Field extends Component<FieldProps> {
     this.onChangePropsName = props.onChangePropsName || "onChange";
     this.eventPropsName = props.eventPropsName || "";
     this.style = props.style;
+    this.dependencies = props.dependencies;
   }
 
   componentDidMount() {

@@ -37,6 +37,18 @@ export default function ActionWidgetScreen() {
           <Field style={{marginTop: 400}} label="Input" name="input" rule={{type: 'string', required: true}}>
             <Input />
           </Field>
+          <Field 
+            style={{marginTop: 400}} 
+            label="Input" 
+            name="confirm" 
+            rule={{ 
+              validator: (rule, value, callback, source) => {
+                console.log(`source = `, source);
+              }
+            }}
+          >
+            <Input />
+          </Field>
           <Field style={{marginTop: 400}} label="Amount" name='amount' rule={{type: 'string', required: true}}>
             <Amount  currency='PHP' />
           </Field>
