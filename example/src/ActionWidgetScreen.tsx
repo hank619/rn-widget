@@ -7,10 +7,12 @@ import moment from 'moment';
 import React from 'react';
 import { SafeAreaView, ScrollView } from 'react-native';
 import type { Asset } from 'react-native-image-picker';
-import { Amount, Button, Checkbox, DatePicker, Field, Form, Input, RadioGroup, Select, TextArea, Upload } from 'rn-widget';
+import { Amount, Button, Checkbox, DatePicker, Field, Form, Input, RadioGroup, Select, TextArea, Upload, useForm } from 'rn-widget';
 import styles from './style';
 
 export default function ActionWidgetScreen() {
+
+  const [form] = useForm();
 
   return (
     <SafeAreaView>
@@ -18,6 +20,7 @@ export default function ActionWidgetScreen() {
         contentContainerStyle={styles.actionWidgtContainer}
       >
         <Form
+          form={form}
           onFinish={(values: any) => {
             console.log(`values = `, values);
           }}
@@ -26,7 +29,6 @@ export default function ActionWidgetScreen() {
             console.log(`values = `, values);
           }}
           initialValues={{
-            input: '123',
             amount: '12313',
             checkbox: true,
             radiogroup: 'option 1',
@@ -41,9 +43,14 @@ export default function ActionWidgetScreen() {
             style={{marginTop: 400}} 
             label="Input" 
             name="confirm" 
+            dependencies={['input']}
             rule={{ 
-              validator: (rule, value, callback, source) => {
-                console.log(`source = `, source);
+              validator: (rule, value) => {
+                const inputValue = form.getFieldValue('input');
+                if (inputValue !== value) {
+                  return ['not the same value'];
+                }
+                return true;
               }
             }}
           >

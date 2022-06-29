@@ -43,12 +43,17 @@ class FormStore extends Component {
     }
   }
   
-  setFieldValue = (name: string, value: any) => {
+  setFieldValue = (name: string, value: any, withTouch = true) => {
     this.stores = {
       ...this.stores,
       [name]: value,
     }
-    this.touched[name] = true;
+    // whether change the touch status of the field
+    // normally when the field its self change or click submit or initialValue setted, withTouch shoud be true
+    // if setFieldValue by dependencies chain, withTouch shoud be false
+    if (withTouch) {
+      this.touched[name] = true;
+    }
     const forceUpdateField = this.fieldEntities.find(field => field.name === name);
     if (!forceUpdateField) {
       return;
@@ -74,16 +79,16 @@ class FormStore extends Component {
       dependencies.forEach((dependency: string) => {
         const dependencyField = this.fieldEntities.find(field => field.name === dependency);
         let isSelect = false;
-        React.Children.forEach(dependencyField, (child) => {
+        React.Children.forEach(dependencyField?.children, (child) => {
           const transferredChild = child as any;
           if (transferredChild?.type?.name === 'Select') {
             isSelect = true;
           }
         });
         if (isSelect) {
-          this.setFieldValue(dependency, undefined);
+          this.setFieldValue(dependency, undefined, false);
         } else {
-          this.setFieldValue(dependency, this.stores[dependency]);
+          this.setFieldValue(dependency, this.stores[dependency], false);
         }
       });
     }
@@ -110,9 +115,8 @@ class FormStore extends Component {
     dependencies.forEach(dependency => {
       if (!this.dependenciesGraph[dependency]) {
         this.dependenciesGraph[dependency] = [];
-      } else {
-        this.dependenciesGraph[dependency].push(name);
       }
+      this.dependenciesGraph[dependency].push(name);
     });
     // dependenciesGraph = { b: [a], c: [a]}
     checkLoopDependencies(this.dependenciesGraph);
@@ -237,11 +241,15 @@ export interface FormInstance {
 }
 
 
-export default function useForm(): [FormInstance] {
-  const storeRef = useRef<FormStore>();
-  if (!storeRef.current) {
-    storeRef.current = new FormStore();
+export default function useForm(form?: FormInstance): [FormInstance] {
+  const formRef = useRef<FormInstance>();
+  if (!formRef.current) {
+    if (form) {
+      formRef.current = form;
+    } else {
+      formRef.current = new FormStore().getForm();
+    }
   }
 
-  return [storeRef.current.getForm()];
+  return [formRef.current];
 }
