@@ -100,7 +100,7 @@ export default class Field extends Component<FieldProps> {
       const { getFieldError, getTouched } = this.context;
       const fieldError = getFieldError?.(this.name);
       const firstError = fieldError?.[0];
-      validateStatus = firstError ? 'error': getTouched(this.name) ? 'success' : null;
+      validateStatus = !getTouched(this.name) ? null : firstError ? 'error': 'success';
       help = firstError?.message;
     } else {
       validateStatus= this.validateStatus;
