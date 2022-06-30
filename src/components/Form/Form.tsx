@@ -6,12 +6,12 @@
 import React, { useRef } from "react";
 import { View } from "react-native";
 import FiledContext from "./FieldContext";
-import useForm from "./useForm";
+import useForm, { FormInstance } from "./useForm";
 
 export default function Form(props: FormProps) {
-  const { initialValues, onFinish, onFinishFailed, children } = props;
+  const { initialValues, onFinish, onFinishFailed, children, form } = props;
   
-  const [formInstance] = useForm();
+  const [formInstance] = useForm(form);
   const mountedRef = useRef(false);
 
   if (!mountedRef.current) {
@@ -52,4 +52,5 @@ interface FormProps {
   onFinish?: Function;
   onFinishFailed?: Function;
   children?: React.ReactNode;
+  form?: FormInstance;
 }

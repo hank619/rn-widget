@@ -7,10 +7,12 @@ import moment from 'moment';
 import React from 'react';
 import { SafeAreaView, ScrollView } from 'react-native';
 import type { Asset } from 'react-native-image-picker';
-import { Amount, Button, Checkbox, DatePicker, Field, Form, Input, RadioGroup, Select, TextArea, Upload } from 'rn-widget';
+import { Amount, Button, Checkbox, DatePicker, Field, Form, Input, RadioGroup, Select, TextArea, Upload, useForm } from 'rn-widget';
 import styles from './style';
 
 export default function ActionWidgetScreen() {
+
+  const [form] = useForm();
 
   return (
     <SafeAreaView>
@@ -18,6 +20,7 @@ export default function ActionWidgetScreen() {
         contentContainerStyle={styles.actionWidgtContainer}
       >
         <Form
+          form={form}
           onFinish={(values: any) => {
             console.log(`values = `, values);
           }}
@@ -26,11 +29,10 @@ export default function ActionWidgetScreen() {
             console.log(`values = `, values);
           }}
           initialValues={{
-            input: '123',
             amount: '12313',
             checkbox: true,
             radiogroup: 'option 1',
-            select: 'option 2',
+            // select: 'option 2',
             datepicker: moment(),
           }}
         >
@@ -77,6 +79,35 @@ export default function ActionWidgetScreen() {
                 {
                   label: 'option 2',
                   value: 'option 2',
+                }
+              ]}
+            />
+          </Field>
+          <Field 
+            style={{marginTop: 10}} 
+            label="Select2" 
+            name="city" 
+            dependencies={['select']}
+            rule={{type: 'string', required: true}}
+            // rule={{ 
+            //   validator: (rule, value) => {
+            //     const inputValue = form.getFieldValue('input');
+            //     if (inputValue !== value) {
+            //       return ['not the same value'];
+            //     }
+            //     return true;
+            //   }
+            // }}
+          >
+            <Select 
+              options={[
+                {
+                  label: 'option 3',
+                  value: 'option 3',
+                },
+                {
+                  label: 'option 4',
+                  value: 'option 4',
                 }
               ]}
             />

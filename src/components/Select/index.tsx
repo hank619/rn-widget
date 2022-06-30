@@ -17,6 +17,7 @@ export function Select(props: SelectProps) {
     onChange,
     options,
     disabled,
+    onChangeFocus,
   } = props;
 
   const [focused, setFocused] = React.useState(false);
@@ -30,6 +31,7 @@ export function Select(props: SelectProps) {
 
   useEffect(() => {
     setFocused(!!expand);
+    // in order to tell field that select is expanded and need to raise zindex for it.
   }, [expand]);
 
   async function toggleSelect() {
@@ -40,6 +42,9 @@ export function Select(props: SelectProps) {
         const overflow = y + 48 + 240 > screenHeight;
         setDirection(overflow ? 'bottom': 'top');
         setExpand(ex => !ex);
+        if (onChangeFocus) {
+          onChangeFocus(true);
+        }
       });
       // @ts-ignore-next-line
       guidelineRef.current.measureLayout(parentRef.current, (_: number, y: number) => {
@@ -58,6 +63,9 @@ export function Select(props: SelectProps) {
               onChange(option.value);
             }
             setExpand(false);
+            if (onChangeFocus) {
+              onChangeFocus(false);
+            }
           }}
           key={option.value}
         >
@@ -124,4 +132,5 @@ export interface SelectProps {
   options: { label: string, value: string }[];
   textStyle?: any;
   disabled?: boolean;
+  onChangeFocus?: (focused: boolean) => void;
 }

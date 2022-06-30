@@ -23,6 +23,8 @@ interface FieldProps {
   onChangePropsName?: string;
   eventPropsName?: string;
   style?: any;
+  dependencies?: string[];
+  onChangeFocusPropsName?: string;
 }
 
 export default class Field extends Component<FieldProps> {
@@ -40,6 +42,8 @@ export default class Field extends Component<FieldProps> {
   onChangePropsName: string;
   eventPropsName: string;
   style?: any;
+  dependencies?: string[];
+  onChangeFocusPropsName: string;
 
   constructor(props: FieldProps) {
     super(props);
@@ -56,6 +60,8 @@ export default class Field extends Component<FieldProps> {
     this.onChangePropsName = props.onChangePropsName || "onChange";
     this.eventPropsName = props.eventPropsName || "";
     this.style = props.style;
+    this.dependencies = props.dependencies;
+    this.onChangeFocusPropsName = props.onChangeFocusPropsName || 'onChangeFocus';
   }
 
   componentDidMount() {
@@ -66,7 +72,7 @@ export default class Field extends Component<FieldProps> {
   }
 
   getControlled = (childProps: any) => {
-    const { getFieldValue, setFieldValue } = this.context || {};
+    const { getFieldValue, setFieldValue, setFieldFocus } = this.context || {};
     const cloneProps = cloneDeep(childProps);
     if (getFieldValue) {
       Object.assign(cloneProps, {
@@ -78,6 +84,13 @@ export default class Field extends Component<FieldProps> {
         [`${this.onChangePropsName}`]: (event: any) => {
           setFieldValue(this.name, get(event, this.eventPropsName, event));
         },
+      });
+    }
+    if (setFieldFocus) {
+      Object.assign(cloneProps, {
+        [`${this.onChangeFocusPropsName}`]: (focused: boolean) => {
+          setFieldFocus(this.name, focused);
+        }
       });
     }
     const [ status ] = this.getStatus();
@@ -97,7 +110,7 @@ export default class Field extends Component<FieldProps> {
       const { getFieldError, getTouched } = this.context;
       const fieldError = getFieldError?.(this.name);
       const firstError = fieldError?.[0];
-      validateStatus = firstError ? 'error': getTouched(this.name) ? 'success' : null;
+      validateStatus = !getTouched(this.name) ? null : firstError ? 'error': 'success';
       help = firstError?.message;
     } else {
       validateStatus= this.validateStatus;
@@ -106,9 +119,15 @@ export default class Field extends Component<FieldProps> {
     return [validateStatus, help]
   }
 
+  isFocused = () => {
+    const { getFocusedField } = this.context || {};
+    return getFocusedField?.() === this.name;
+  }
+
   render() {
     const isStringExtra = typeof this.extra === 'string';
     const [ validateStatus, help ] = this.getStatus();
+    const isFocused = this.isFocused();
     // @ts-ignore
     const isSelectElement = this.children.type?.name === 'Select';
     const isAndroid = Platform.OS === 'android';
@@ -116,8 +135,9 @@ export default class Field extends Component<FieldProps> {
     return (
       // hack logic here for Select element, since Select required zIndex, and the parent has to add zIndex as well
       <View style={[
-        isSelectElement && isAndroid && styles.androidContainer,
-        isSelectElement && !isAndroid && styles.iosContainer,
+        isAndroid && isSelectElement &&  styles.androidContainer,
+        !isAndroid && isSelectElement && isFocused &&styles.iosFocusedContainer,
+        !isAndroid && isSelectElement && !isFocused &&styles.iosNormalContainer,
         this.style,
       ]}>
         {this.label && <Text style={styles.label}>{this.label}</Text>}

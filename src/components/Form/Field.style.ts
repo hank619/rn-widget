@@ -21,7 +21,10 @@ export default StyleSheet.create({
   warning: {
     color: Colors.yellow,
   },
-  iosContainer: {
+  iosFocusedContainer: {
+    zIndex: 11,
+  },
+  iosNormalContainer: {
     zIndex: 10,
   },
   androidContainer: {
