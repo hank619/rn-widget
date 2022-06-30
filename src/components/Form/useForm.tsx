@@ -17,6 +17,7 @@ class FormStore extends Component {
   touched: any;
   errors: any;
   dependenciesGraph: any;
+  focusedField?: string;
 
   constructor(props?: any) {
     super(props);
@@ -26,6 +27,7 @@ class FormStore extends Component {
     this.touched = {};
     this.errors = {};
     this.dependenciesGraph = {};
+    this.focusedField = undefined;
   }
 
   getFieldValue = (name: string) => {
@@ -155,6 +157,19 @@ class FormStore extends Component {
     this.notifyUpdate([name])
   }
 
+  setFieldFocus = (name: string, focused: boolean) => {
+    if (focused) {
+      this.focusedField = name;
+    } else {
+      this.focusedField = undefined;
+    }
+    this.notifyUpdate([name]);
+  }
+
+  getFocusedField = () => {
+    return this.focusedField;
+  }
+
   setFieldsError = (fieldsError: any) => {
     this.errors = {
       ...fieldsError,
@@ -217,6 +232,8 @@ class FormStore extends Component {
       getFieldsValue: this.getFieldsValue,
       setFieldsValue: this.setFieldsValue,
       setFieldValue: this.setFieldValue,
+      setFieldFocus: this.setFieldFocus,
+      getFocusedField: this.getFocusedField,
       registerField: this.registerField,
       setCallbacks: this.setCallbacks,
       setInitialValues: this.setInitialValues,
@@ -232,6 +249,8 @@ export interface FormInstance {
   getFieldsValue: Function;
   setFieldsValue: Function;
   setFieldValue: Function;
+  setFieldFocus: Function;
+  getFocusedField: Function;
   registerField: Function;
   setCallbacks: Function;
   setInitialValues: Function;

@@ -32,28 +32,11 @@ export default function ActionWidgetScreen() {
             amount: '12313',
             checkbox: true,
             radiogroup: 'option 1',
-            select: 'option 2',
+            // select: 'option 2',
             datepicker: moment(),
           }}
         >
           <Field style={{marginTop: 400}} label="Input" name="input" rule={{type: 'string', required: true}}>
-            <Input />
-          </Field>
-          <Field 
-            style={{marginTop: 400}} 
-            label="Input" 
-            name="confirm" 
-            dependencies={['input']}
-            rule={{ 
-              validator: (rule, value) => {
-                const inputValue = form.getFieldValue('input');
-                if (inputValue !== value) {
-                  return ['not the same value'];
-                }
-                return true;
-              }
-            }}
-          >
             <Input />
           </Field>
           <Field style={{marginTop: 400}} label="Amount" name='amount' rule={{type: 'string', required: true}}>
@@ -96,6 +79,35 @@ export default function ActionWidgetScreen() {
                 {
                   label: 'option 2',
                   value: 'option 2',
+                }
+              ]}
+            />
+          </Field>
+          <Field 
+            style={{marginTop: 10}} 
+            label="Select2" 
+            name="city" 
+            dependencies={['select']}
+            rule={{type: 'string', required: true}}
+            // rule={{ 
+            //   validator: (rule, value) => {
+            //     const inputValue = form.getFieldValue('input');
+            //     if (inputValue !== value) {
+            //       return ['not the same value'];
+            //     }
+            //     return true;
+            //   }
+            // }}
+          >
+            <Select 
+              options={[
+                {
+                  label: 'option 3',
+                  value: 'option 3',
+                },
+                {
+                  label: 'option 4',
+                  value: 'option 4',
                 }
               ]}
             />
