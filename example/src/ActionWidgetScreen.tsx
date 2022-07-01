@@ -89,27 +89,33 @@ export default function ActionWidgetScreen() {
             name="city" 
             dependencies={['select']}
             rule={{type: 'string', required: true}}
-            // rule={{ 
-            //   validator: (rule, value) => {
-            //     const inputValue = form.getFieldValue('input');
-            //     if (inputValue !== value) {
-            //       return ['not the same value'];
-            //     }
-            //     return true;
-            //   }
-            // }}
           >
             <Select 
-              options={[
-                {
-                  label: 'option 3',
-                  value: 'option 3',
-                },
-                {
-                  label: 'option 4',
-                  value: 'option 4',
+              options={() => {
+                const select =form.getFieldValue('select');
+                if (select === 'option 1') {
+                  return [
+                    {
+                      label: 'option 3',
+                      value: 'option 3',
+                    },
+                    {
+                      label: 'option 4',
+                      value: 'option 4',
+                    }
+                  ]
                 }
-              ]}
+                return [
+                  {
+                    label: 'option 5',
+                    value: 'option 5',
+                  },
+                  {
+                    label: 'option 6',
+                    value: 'option 6',
+                  }
+                ];
+              }}
             />
           </Field>
           <Field style={{marginTop: 400}} label="UploadSuccess" name='uploadSuccess' rule={{

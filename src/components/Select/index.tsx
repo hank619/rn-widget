@@ -54,7 +54,8 @@ export function Select(props: SelectProps) {
   }
 
   function getDropdown() {
-    return options.map((option, _) => {
+    const decoredOptions = typeof options === 'function' ? options() : options;
+    return decoredOptions.map((option, _) => {
       const selected = option.value === value;
       return (
         <TouchableWithoutFeedback
@@ -129,7 +130,7 @@ export interface SelectProps {
   status?: 'error' | 'success' | 'warning';
   value?: string;
   onChange?: (value: string) => void;
-  options: { label: string, value: string }[];
+  options: { label: string, value: string }[] | (() => ({ label: string, value: string }[]));
   textStyle?: any;
   disabled?: boolean;
   onChangeFocus?: (focused: boolean) => void;
