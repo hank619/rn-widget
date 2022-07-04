@@ -11,7 +11,7 @@ import { View, Text, Platform } from 'react-native';
 import { cloneDeep, get } from 'lodash';
 import styles from './Field.style';
 
-interface FieldProps {
+export interface FieldProps {
   name: string;
   label?: string;
   validateStatus?: 'success' | 'error' | 'warning';

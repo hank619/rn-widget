@@ -9,6 +9,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import ActionWidgetScreen from './ActionWidgetScreen';
 import DisplayWidgetScreen from './DisplayWidgetScreen';
 import OptionScreen from './OptionScreen';
+import DynamicFormScreen from './DynamicFormScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,7 @@ export default function App() {
         <Stack.Screen name="OptionScreen" component={OptionScreen} />
         <Stack.Screen name="ActionWidgetScreen"  component={ActionWidgetScreen}/>
         <Stack.Screen name="DisplayWidgetScreen" component={DisplayWidgetScreen} />
+        <Stack.Screen name="DynamicFormScreen" component={DynamicFormScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
