@@ -13,6 +13,7 @@ export default function OptionScreen({navigation}: any) {
     <View style={{padding: 12}}>
       <Button.FWButton onClick={() => navigation.navigate("ActionWidgetScreen")} text="ActionWidgetScreen" style={{marginVertical: 12}} />
       <Button.FWButton onClick={() => navigation.navigate("DisplayWidgetScreen")} text="DisplayWidgetScreen" style={{marginVertical: 12}}/>
+      <Button.FWButton onClick={() => navigation.navigate("DynamicFormScreen")} text="DynamicFormScreen" style={{marginVertical: 12}}/>
     </View>
   )
 }

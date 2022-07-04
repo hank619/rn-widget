@@ -5,11 +5,14 @@
  */
 import React, { useRef } from "react";
 import { View } from "react-native";
+import { Button } from "../Button";
+import type { ElementProps } from "./Element";
+import Element from "./Element";
 import FiledContext from "./FieldContext";
 import useForm, { FormInstance } from "./useForm";
 
 export default function Form(props: FormProps) {
-  const { initialValues, onFinish, onFinishFailed, children, form } = props;
+  const { initialValues, onFinish, onFinishFailed, config, children, form } = props;
   
   const [formInstance] = useForm(form);
   const mountedRef = useRef(false);
@@ -25,18 +28,44 @@ export default function Form(props: FormProps) {
     mountedRef.current = true;
   }
   
-  // find the button which trigger submit;
-  const mappedChildren = React.Children.map(children, (child) => {
-    const transferredChild = child as any;
-    if (transferredChild?.props?.action === 'submit') {
-      return React.cloneElement(transferredChild, {
-        onClick: () => {
-          formInstance.submit();
+  let mappedChildren;
+  if (config && config.length > 0) {
+    // config usage
+    const appendedButtonConfig = [
+      ...config,
+      {
+        render: () => {
+          return (
+            <Button.FWButton 
+              text='Submit' 
+              action='submit' 
+              style={{marginTop: 30}}
+              onClick={() => {
+                formInstance.submit();
+              }}
+            />
+          );
         }
-      });
-    }
-    return child;
-  });
+      }
+    ];
+    mappedChildren = appendedButtonConfig.map(conf => {
+      return <Element {...conf}/>
+    })
+  } else {
+    // childrend usage
+    // find the button which trigger submit;
+    mappedChildren = React.Children.map(children, (child) => {
+      const transferredChild = child as any;
+      if (transferredChild?.props?.action === 'submit') {
+        return React.cloneElement(transferredChild, {
+          onClick: () => {
+            formInstance.submit();
+          }
+        });
+      }
+      return child;
+    });
+  }
 
   return (
     <View>
@@ -51,6 +80,8 @@ interface FormProps {
   initialValues?: any,
   onFinish?: Function;
   onFinishFailed?: Function;
+  // config and children are exclusive
+  config?: ElementProps[];
   children?: React.ReactNode;
   form?: FormInstance;
 }
