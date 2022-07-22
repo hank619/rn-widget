@@ -21,6 +21,9 @@ export default function Element(props: ElementProps) {
     extra,
     rule,
     dependencies,
+    valuePropsName,
+    onChangePropsName,
+    eventPropsName,
     ...rest
   } = props;
 
@@ -37,6 +40,9 @@ export default function Element(props: ElementProps) {
         extra={extra}
         rule={rule}
         dependencies={dependencies}
+        valuePropsName={valuePropsName}
+        onChangePropsName={onChangePropsName}
+        eventPropsName={eventPropsName}
       >
         <TagName 
           {...rest}
@@ -50,6 +56,7 @@ export default function Element(props: ElementProps) {
 }
 
 export interface ElementProps  {
+  // props for Field
   type?: ActionWidgetType;
   render?: () => React.ReactElement;
   name?: string;
@@ -57,6 +64,11 @@ export interface ElementProps  {
   extra?: string;
   rule?: Rule;
   dependencies?: string[];
+  valuePropsName?: string;
+  onChangePropsName?: string;
+  eventPropsName?: string;
+
+  // props for children
   options?: { label: string, value: string }[] | (() => ({ label: string, value: string }[]));
   includeBase64?: boolean;
   uploadMethod?: (asset: Asset ,uuid: string) => Promise<any>;
