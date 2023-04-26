@@ -39,19 +39,19 @@ export default function ActionWidgetScreen() {
           <Field style={{marginTop: 20}} label="Input" name="input" rule={{type: 'string', required: true}}>
             <Input />
           </Field>
-          <Field style={{marginTop: 20}} label="Input" name="bankCard" rule={{type: 'string', required: true}}>
+          <Field style={{marginTop: 20}} label="BankCard" name="bankCard" rule={{type: 'string', required: true}}>
             <Input.BankCard />
           </Field>
-          <Field style={{marginTop: 20}} label="Input" name="phone" rule={{type: 'string', required: true}}>
+          <Field style={{marginTop: 20}} label="Phone" name="phone" rule={{type: 'string', required: true}}>
             <Input.Phone prefix='84' />
           </Field>
-          <Field style={{marginTop: 20}} label="Input" name="password" rule={{type: 'string', required: true}}>
+          <Field style={{marginTop: 20}} label="Password" name="password" rule={{type: 'string', required: true}}>
             <Input.Password />
           </Field>
-          <Field style={{marginTop: 20}} label="Input" name="Number" rule={{type: 'string', required: true}}>
+          <Field style={{marginTop: 20}} label="Number" name="number" rule={{type: 'string', required: true}}>
             <Input.Number />
           </Field>
-          <Field style={{marginTop: 20}} label="Input" name="Amount" rule={{type: 'string', required: true}}>
+          <Field style={{marginTop: 20}} label="Amount" name="amount" rule={{type: 'string', required: true}}>
             <Input.Amount />
           </Field>
           <Field style={{marginTop: 20}} label="TextArea" name='textarea' rule={{type: 'string', required: true}}>
@@ -168,7 +168,7 @@ export default function ActionWidgetScreen() {
               }}
             />
           </Field>
-          <Button text='click' action='submit' style={{marginTop: 30}}/>
+          <Button action='submit' style={{marginTop: 30}}>click</Button>
         </Form>
       </ScrollView>
     </SafeAreaView>

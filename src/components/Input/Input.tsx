@@ -7,6 +7,7 @@ import type { InputItemProps } from '@ant-design/react-native/es/input-item';
 import { InputItem as AntDInput, View, Text } from '@ant-design/react-native';
 import React from 'react';
 import { Colors, Images } from '../../theme';
+import { primePrice, thousandPrice } from '../../util/price';
 import { Image } from 'react-native';
 
 export interface IInputProps {
@@ -126,11 +127,21 @@ Input.Number = function(props: any) {
   );
 }
 
-Input.Amount = function(props: any) {
+Input.Amount = function(props: {value?: string, onChange?: any, [key: string]: any}) {
+
+  const { value, onChange, ...rest } = props;
+  function amountOnChange(amount: string) {
+    const localeAmount = thousandPrice(primePrice(amount));
+    if (onChange) {
+      onChange(localeAmount);
+    }
+  }
+
   return (
-    <Input 
-      type='number'
-      {...props}
+    <Input.Number 
+      value={value ? thousandPrice(primePrice(value)): ''}
+      onChange={amountOnChange}
+      {...rest}
     />
   );
 }
