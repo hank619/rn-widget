@@ -1,4 +1,3 @@
-export * from './components/Amount';
 export * from './components/Input';
 export * from './components/DatePicker';
 export * from './components/Select';
