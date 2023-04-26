@@ -7,7 +7,7 @@ import moment from 'moment';
 import React from 'react';
 import { SafeAreaView, ScrollView } from 'react-native';
 import type { Asset } from 'react-native-image-picker';
-import { Amount, Button, Checkbox, DatePicker, Field, Form, Input, RadioGroup, Select, TextArea, Upload, useForm } from 'rn-widget';
+import { Button, Checkbox, DatePicker, Field, Form, Input, RadioGroup, Select, TextArea, Upload, useForm } from 'rn-widget';
 import styles from './style';
 
 export default function ActionWidgetScreen() {
@@ -36,26 +36,38 @@ export default function ActionWidgetScreen() {
             datepicker: moment(),
           }}
         >
-          <Field style={{marginTop: 400}} label="Input" name="input" rule={{type: 'string', required: true}}>
+          <Field style={{marginTop: 20}} label="Input" name="input" rule={{type: 'string', required: true}}>
             <Input />
           </Field>
-          <Field style={{marginTop: 400}} label="Amount" name='amount' rule={{type: 'string', required: true}}>
-            <Amount  currency='PHP' />
+          <Field style={{marginTop: 20}} label="Input" name="bankCard" rule={{type: 'string', required: true}}>
+            <Input.BankCard />
           </Field>
-          <Field style={{marginTop: 400}} label="TextArea" name='textarea' rule={{type: 'string', required: true}}>
+          <Field style={{marginTop: 20}} label="Input" name="phone" rule={{type: 'string', required: true}}>
+            <Input.Phone prefix='84' />
+          </Field>
+          <Field style={{marginTop: 20}} label="Input" name="password" rule={{type: 'string', required: true}}>
+            <Input.Password />
+          </Field>
+          <Field style={{marginTop: 20}} label="Input" name="Number" rule={{type: 'string', required: true}}>
+            <Input.Number />
+          </Field>
+          <Field style={{marginTop: 20}} label="Input" name="Amount" rule={{type: 'string', required: true}}>
+            <Input.Amount />
+          </Field>
+          <Field style={{marginTop: 20}} label="TextArea" name='textarea' rule={{type: 'string', required: true}}>
             <TextArea showCount />
           </Field>
-          <Field style={{marginTop: 400}} label="DatePicker"  name='datepicker' rule={{ required: true}}>
+          <Field style={{marginTop: 20}} label="DatePicker"  name='datepicker' rule={{ required: true}}>
             <DatePicker />
           </Field>
-          <Field style={{marginTop: 400}} label="Checkbox" name='checkbox' rule={{
+          <Field style={{marginTop: 20}} label="Checkbox" name='checkbox' rule={{
             validator: (_, value: any) => {
               return !!value;
             }
           }}>
             <Checkbox content='plse check me' />
           </Field>
-          <Field style={{marginTop: 400}} label="RadioGroup" name='radiogroup' rule={{type: 'string', required: true}}>
+          <Field style={{marginTop: 20}} label="RadioGroup" name='radiogroup' rule={{type: 'string', required: true}}>
             <RadioGroup 
               options={[
                 {
@@ -69,7 +81,7 @@ export default function ActionWidgetScreen() {
               ]}
             />
           </Field>
-          <Field style={{marginTop: 400}} label="Select"  name='select' rule={{type: 'string', required: true}}>
+          <Field style={{marginTop: 20}} label="Select"  name='select' rule={{type: 'string', required: true}}>
             <Select 
               options={[
                 {
@@ -118,7 +130,7 @@ export default function ActionWidgetScreen() {
               }}
             />
           </Field>
-          <Field style={{marginTop: 400}} label="UploadSuccess" name='uploadSuccess' rule={{
+          <Field style={{marginTop: 20}} label="UploadSuccess" name='uploadSuccess' rule={{
             validator: (_, value: any) => {
               return !!value && value.length > 0 && !value.find((item: any) => item.status === 'fail');
             }
@@ -132,12 +144,12 @@ export default function ActionWidgetScreen() {
                       url: getUrlFromAsset(asset),
                       uuid
                     });
-                  }, 1000);
+                  }, 200);
                 });
               }}
             />
           </Field>
-          <Field style={{marginTop: 400}} label="UploadFailed" name='uploadFailed' rule={{
+          <Field style={{marginTop: 20}} label="UploadFailed" name='uploadFailed' rule={{
             validator: (_, value: any) => {
               return !!value && value.length > 0 && !value.find((item: any) => item.status === 'fail');
             }
@@ -151,7 +163,7 @@ export default function ActionWidgetScreen() {
                       error: 'failure',
                       uuid
                     });
-                  }, 1000);
+                  }, 200);
                 });
               }}
             />
