@@ -54,7 +54,7 @@ export default StyleSheet.create({
   success: {
   },
   error: {
-    borderColor: Colors.red,
+    borderColor: Colors.redMedium,
   },
   warning: {
     borderColor: Colors.yellow,

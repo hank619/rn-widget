@@ -24,7 +24,7 @@ export default StyleSheet.create({
   },
   selected: {
     borderColor: Colors.primary,
-    backgroundColor: Colors.primarLight,
+    backgroundColor: Colors.primaryLight,
   },
   unselected: {
     borderColor: Colors.fog,

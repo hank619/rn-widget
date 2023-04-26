@@ -13,7 +13,7 @@ export default StyleSheet.create({
     color: Colors.stone,
   },
   error: {
-    color: Colors.red,
+    color: Colors.redMedium,
   },
   success: {
     color: Colors.green,

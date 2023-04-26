@@ -27,7 +27,7 @@ export default StyleSheet.create({
   success: {
   },
   error: {
-    borderColor: Colors.red,
+    borderColor: Colors.redMedium,
   },
   warning: {
     borderColor: Colors.yellow,
@@ -68,7 +68,7 @@ export default StyleSheet.create({
   itemError: {
     height: 2,
     width: '100%',
-    backgroundColor: Colors.red,
+    backgroundColor: Colors.redMedium,
   },
   itemImage: {},
   itemName: {

@@ -31,7 +31,7 @@ export default StyleSheet.create({
   success: {
   },
   error: {
-    borderColor: Colors.red,
+    borderColor: Colors.redMedium,
   },
   warning: {
     borderColor: Colors.yellow,
@@ -49,11 +49,11 @@ export default StyleSheet.create({
   },
   invalid: {
     ...TypeFaces.body2,
-    color: Colors.red,
+    color: Colors.redMedium,
     flex: 1,
   },
   count: {
     ...TypeFaces.body2,
-    color: Colors.grantie,
+    color: Colors.granite,
   },
 })

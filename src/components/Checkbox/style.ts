@@ -22,7 +22,7 @@ export default StyleSheet.create({
   success: {
   },
   error: {
-    tintColor: Colors.red,
+    tintColor: Colors.redMedium,
   },
   warning: {
     tintColor: Colors.yellow,

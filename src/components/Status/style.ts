@@ -16,23 +16,23 @@ export default StyleSheet.create({
     fontWeight: '700',
   },
   success: {
-    backgroundColor: Colors.lightGreen,
+    backgroundColor: Colors.greenLight,
     color: Colors.green,
   },
   info: {
-    backgroundColor: Colors.lightBlue,
+    backgroundColor: Colors.blueLight,
     color: Colors.blue,
   },
   warning: {
-    backgroundColor: Colors.lightYellow,
+    backgroundColor: Colors.yellowLight,
     color: Colors.yellow,
   },
   error: {
-    backgroundColor: Colors.lightRed,
-    color: Colors.red,
+    backgroundColor: Colors.redLight,
+    color: Colors.redMedium,
   },
   invalid: {
     backgroundColor: Colors.grey,
-    color: Colors.grantie,
+    color: Colors.granite,
   }
 });
