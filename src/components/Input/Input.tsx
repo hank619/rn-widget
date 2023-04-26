@@ -10,15 +10,9 @@ import { Colors, Images } from '../../theme';
 import { primePrice, thousandPrice } from '../../util/price';
 import { Image } from 'react-native';
 
-export interface IInputProps {
-  type?: InputItemProps['type'];
+export interface IInputProps extends InputItemProps {
   prefix?: any;
-  style?: object;
   status?: 'success' | 'error';
-  value?: any;
-  onChange?: any;
-  disabled?: boolean;
-  [key: string]: any;
 }
 
 export default function Input(props: IInputProps) {

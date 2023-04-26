@@ -8,12 +8,7 @@ import { Button as AntDButton, Text } from '@ant-design/react-native';
 import React from 'react';
 import { Colors } from '../../theme';
 
-export interface IButtonProps {
-  type?: ButtonProps['type'];
-  style?: object;
-  children: any;
-  disabled?: boolean;
-  [key: string]: any;
+export interface IButtonProps extends ButtonProps {
 }
 
 export default function Button(props: IButtonProps) {
