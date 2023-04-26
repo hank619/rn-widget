@@ -5,21 +5,21 @@
  */
 import React from "react";
 import { Modal, Text, TouchableWithoutFeedback, View } from 'react-native';
-import { FWButton } from "../Button/FWButton";
+import { Button } from "../Button";
 import styles from './style';
 
 export function Dialog(props: DialogProps) {
-  const { 
-    visible, 
-    dismiss, 
-    style, 
-    title, 
-    content, 
-    children, 
-    okText, 
-    cancelText, 
-    onOk, 
-    onCancel, 
+  const {
+    visible,
+    dismiss,
+    style,
+    title,
+    content,
+    children,
+    okText,
+    cancelText,
+    onOk,
+    onCancel,
     touchOutsideCancellable,
     titleStyle,
     contentStyle,
@@ -41,14 +41,18 @@ export function Dialog(props: DialogProps) {
               <>
                 {!content && children}
               </>
-              {okText && <FWButton style={[styles.ok, okStyle]} type={'primary'} text={okText} onClick={() => {
+              {okText && <Button style={[styles.ok, okStyle]} type={'primary'} text={okText} onPress={() => {
                 onOk && onOk();
                 dismiss();
-              }}/>}
-              {cancelText && <FWButton style={[styles.cancel, cancelStyle]} type={'secondary'} text={cancelText} onClick={() => {
+              }}>
+                okText
+              </Button>}
+              {cancelText && <Button style={[styles.cancel, cancelStyle]} onPress={() => {
                 onCancel && onCancel();
                 dismiss();
-              }}/>}
+              }}>
+                cancelText
+              </Button>}
             </View>
           </TouchableWithoutFeedback>
         </View>

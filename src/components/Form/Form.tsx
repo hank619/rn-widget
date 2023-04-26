@@ -13,7 +13,7 @@ import useForm, { FormInstance } from "./useForm";
 
 export default function Form(props: FormProps) {
   const { initialValues, onFinish, onFinishFailed, config, children, form } = props;
-  
+
   const [formInstance] = useForm(form);
   const mountedRef = useRef(false);
 
@@ -27,7 +27,7 @@ export default function Form(props: FormProps) {
     }
     mountedRef.current = true;
   }
-  
+
   let mappedChildren;
   if (config && config.length > 0) {
     // config usage
@@ -36,21 +36,22 @@ export default function Form(props: FormProps) {
       {
         render: () => {
           return (
-            <Button.FWButton 
-              text='Submit' 
-              action='submit' 
-              style={{marginTop: 30}}
-              onClick={() => {
+            <Button
+              action='submit'
+              style={{ marginTop: 30 }}
+              onPress={() => {
                 formInstance.submit();
               }}
-            />
+            >
+              Submit
+            </Button>
           );
         }
       }
     ];
     mappedChildren = appendedButtonConfig.map(conf => {
-      return <Element {...conf}/>
-    })
+      return <Element {...conf} />;
+    });
   } else {
     // childrend usage
     // find the button which trigger submit;
@@ -58,7 +59,7 @@ export default function Form(props: FormProps) {
       const transferredChild = child as any;
       if (transferredChild?.props?.action === 'submit') {
         return React.cloneElement(transferredChild, {
-          onClick: () => {
+          onPress: () => {
             formInstance.submit();
           }
         });

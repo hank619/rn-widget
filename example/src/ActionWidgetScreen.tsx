@@ -156,7 +156,7 @@ export default function ActionWidgetScreen() {
               }}
             />
           </Field>
-          <Button.FWButton text='click' action='submit' style={{marginTop: 30}}/>
+          <Button text='click' action='submit' style={{marginTop: 30}}/>
         </Form>
       </ScrollView>
     </SafeAreaView>
