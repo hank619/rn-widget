@@ -55,7 +55,7 @@ export default function ActionWidgetScreen() {
             <Input.Amount />
           </Field>
           <Field style={{marginTop: 20}} label="TextArea" name='textarea' rule={{type: 'string', required: true}}>
-            <TextArea showCount />
+            <TextArea />
           </Field>
           <Field style={{marginTop: 20}} label="DatePicker"  name='datepicker' rule={{ required: true}}>
             <DatePicker />

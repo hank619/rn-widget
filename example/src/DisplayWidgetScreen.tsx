@@ -4,9 +4,9 @@
  * @Description:
  */
 import React from 'react';
-import { SafeAreaView, ScrollView } from 'react-native';
+import { SafeAreaView, ScrollView, View } from 'react-native';
 import SimpleToast from 'react-native-simple-toast';
-import { Alert, Button, Card, Dialog, Fold, Loading, Preview, Status, Step } from 'rn-widget';
+import { Alert, Button, Card, Dialog, Fold, Loading, Preview, Status, Steps } from 'rn-widget';
 import styles from './style';
 
 export default function DisplayWidgetScreen() {
@@ -23,26 +23,26 @@ export default function DisplayWidgetScreen() {
 
         <Button
           type='primary'
-          style={{ marginTop: 12 }}
+          style={{ marginTop: 20 }}
           onPress={() => { SimpleToast.show('Submit'); }}
         >
           Primary Button
         </Button>
         <Button
-          style={{ marginTop: 12 }}
+          style={{ marginTop: 20 }}
           onPress={() => { SimpleToast.show('Submit'); }}
         >
           Default Button
         </Button>
         <Button
-          style={{ marginTop: 12 }}
+          style={{ marginTop: 20 }}
           onPress={() => { SimpleToast.show('Submit'); }}
           type='ghost'
         >
           Ghost Button
         </Button>
         <Button
-          style={{ marginTop: 12 }}
+          style={{ marginTop: 20 }}
           type='primary'
           disabled
           onPress={() => { SimpleToast.show('Submit'); }}
@@ -50,14 +50,14 @@ export default function DisplayWidgetScreen() {
           Primary Disabled
         </Button>
         <Button
-          style={{ marginTop: 12 }}
+          style={{ marginTop: 20 }}
           disabled
           onPress={() => { SimpleToast.show('Submit'); }}
         >
           Default Disabled
         </Button>
         <Button
-          style={{ marginTop: 12 }}
+          style={{ marginTop: 20 }}
           onPress={() => { SimpleToast.show('Submit'); }}
           disabled
           type='ghost'
@@ -67,59 +67,59 @@ export default function DisplayWidgetScreen() {
         <Status
           type={'success'}
           status={'SUCCESS STATUS'}
-          style={{ marginTop: 12, }}
+          style={{ marginTop: 20, }}
         />
         <Status
           type={'info'}
           status={'PROCESS STATUS'}
-          style={{ marginTop: 12 }}
+          style={{ marginTop: 20 }}
         />
         <Status
           type={'error'}
           status={'ERROR STATUS'}
-          style={{ marginTop: 12 }}
+          style={{ marginTop: 20 }}
         />
         <Status
           type={'warning'}
           status={'PENDING STATUS'}
-          style={{ marginTop: 12 }}
+          style={{ marginTop: 20 }}
         />
         <Status
           type={'invalid'}
           status={'ENDING STATUS'}
-          style={{ marginTop: 12 }}
+          style={{ marginTop: 20 }}
         />
         <Preview
           files={previewFiles}
-          style={{ marginVertical: 400 }}
+          style={{ marginVertical: 20 }}
         />
         <Alert
-          style={{ width: 300, marginTop: 12 }}
+          style={{ width: 300, marginTop: 20 }}
           type={'success'}
           text={'Success Alert Success Alert Success Alert Success Alert Success Alert Success Alert '}
         />
         <Alert
-          style={{ width: 300, marginTop: 12 }}
+          style={{ width: 300, marginTop: 20 }}
           type={'info'}
           text={'Info Alert Info Alert Info Alert Info Alert Info Alert Info Alert Info Alert '}
         />
         <Alert
-          style={{ width: 300, marginTop: 12 }}
+          style={{ width: 300, marginTop: 20 }}
           type={'error'}
           text={'Error Alert Error Alert Error Alert Error Alert Error Alert Error Alert Error Alert '}
         />
         <Alert
-          style={{ width: 300, marginTop: 12 }}
+          style={{ width: 300, marginTop: 20 }}
           type={'warning'}
           text={'Warning Alert Warning Alert Warning Alert Warning Alert Warning Alert Warning Alert '}
         />
         <Fold
-          style={{ width: 300, marginVertical: 400 }}
+          style={{ width: 300, marginVertical: 20 }}
           title={'How can I generate a policy after I purchased crack screen protection？'}
           content={'Click the [Redeem] on home page and enter the code we sent to you through SMS and email. Policy will be generated after you entered all the codes you want to add for this policy and click [Apply] button. Once policy is generated, the max coverage and excess is determined and cannot be changed any more, and the policy will start from the code purchased date after your activation is passed.'}
         />
         <Button
-          style={{ width: 300, marginVertica: 400 }}
+          style={{ width: 300, marginVertical: 20 }}
           type={'primary'}
           onPress={() => setShowDialog(true)}
         >
@@ -137,24 +137,19 @@ export default function DisplayWidgetScreen() {
         />
         <Card
           title={'Location Selection'}
-          style={{ marginTop: 300 }}
+          style={{ marginTop: 20 }}
         >
           <Card.Item label={'Province'} value={'Special Capital Region of Jakarta'} />
           <Card.Item label={'City'} value={'Central Jakarta'} />
           <Card.Item label={'Address'} value={'Sichuan Chengdu Tainfu Square G building 3 floor 3 number 108'} />
         </Card>
         <Loading visible={false} size='large' />
-        <Step.FWStep
-          containerStyle={{ width: 300, marginTop: 100 }}
-          total={3}
-          current={2}
-        />
-        <Step.CWStep
-          containerStyle={{ width: 300, marginTop: 24, marginBottom: 100 }}
-          itemStyle={{ width: 50 }}
-          total={3}
-          current={2}
-        />
+        <View style={{ backgroundColor: '#5858FF', padding: 24, marginTop: 20}}>
+          <Steps
+            total={3}
+            current={2}
+          />
+        </View>
       </ScrollView>
 
     </SafeAreaView>

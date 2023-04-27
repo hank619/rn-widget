@@ -9,6 +9,7 @@ import React from 'react';
 import { Colors } from '../../theme';
 
 export interface IButtonProps extends ButtonProps {
+  action?: string;
 }
 
 export default function Button(props: IButtonProps) {
