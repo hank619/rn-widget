@@ -17,7 +17,6 @@ export default function Steps(props: IStepsProps) {
       {
         display: 'flex',
         flexDirection: 'row',
-        width: '100%',
         height: 8,
         alignItems: 'center',
       },

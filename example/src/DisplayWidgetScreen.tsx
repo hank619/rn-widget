@@ -144,7 +144,7 @@ export default function DisplayWidgetScreen() {
           <Card.Item label={'Address'} value={'Sichuan Chengdu Tainfu Square G building 3 floor 3 number 108'} />
         </Card>
         <Loading visible={false} size='large' />
-        <View style={{ backgroundColor: '#5858FF', padding: 24, marginTop: 20}}>
+        <View style={{ backgroundColor: '#5858FF', padding: 24, marginTop: 20, width: '100%'}}>
           <Steps
             total={3}
             current={2}
