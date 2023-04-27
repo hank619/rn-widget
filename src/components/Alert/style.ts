@@ -8,7 +8,6 @@ import { Colors, TypeFaces } from '../../theme';
 
 export default StyleSheet.create({
   container: {
-    width: '100%',
     flexDirection: 'row',
     paddingHorizontal: 16,
     paddingVertical: 12,

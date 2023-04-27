@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Colors } from "../../theme";
 
 export interface IStepsProps {
@@ -27,10 +27,10 @@ export default function Steps(props: IStepsProps) {
         // total: 3, index=0,1,2
         const shadowed = index >= current;
         return (
-          <>
+          <Fragment key={index}>
             <Line shadowed={shadowed} key={`line-${index}`} />
             <Circle shadowed={shadowed} key={`circle-${index}`} />
-          </>
+          </Fragment>
         );
       })}
     </View>

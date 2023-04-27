@@ -3,14 +3,15 @@
  * @Date: 2021-11-02 14:36:53
  * @Description:
  */
-import React from 'react';
-import { SafeAreaView, ScrollView, View } from 'react-native';
+import React, { useState } from 'react';
+import { SafeAreaView, ScrollView, View, Text } from 'react-native';
 import SimpleToast from 'react-native-simple-toast';
-import { Alert, Button, Card, Dialog, Fold, Loading, Preview, Status, Steps } from 'rn-widget';
+import { Alert, Button, Card, Dialog, Fold, Loading, Preview, Status, Steps, BottomSlide } from 'rn-widget';
 import styles from './style';
 
 export default function DisplayWidgetScreen() {
-  const [showDialog, setShowDialog] = React.useState(false);
+  const [showDialog, setShowDialog] = useState(false);
+  const [showBottomSlide, setShowBottomSlide] = React.useState(false);
   const previewFiles = [
     'https://raw.githubusercontent.com/matrixyf/pictureRepo/main/20211202181724.png',
     'https://raw.githubusercontent.com/matrixyf/pictureRepo/main/20211202181749.png',
@@ -20,7 +21,6 @@ export default function DisplayWidgetScreen() {
   return (
     <SafeAreaView>
       <ScrollView contentContainerStyle={styles.displayWidgetContainer}>
-
         <Button
           type='primary'
           style={{ marginTop: 20 }}
@@ -135,6 +135,22 @@ export default function DisplayWidgetScreen() {
           cancelText={'Cancel'}
           onCancel={() => SimpleToast.show('Cancel')}
         />
+        <Button
+          style={{ width: 300, marginVertical: 20 }}
+          type={'primary'}
+          onPress={() => setShowBottomSlide(true)}
+        >
+          Show Bottom Slide
+        </Button>
+        <BottomSlide
+          visible={showBottomSlide}
+          dismiss={() => setShowBottomSlide(false)}
+          maxHeight={200}
+        >
+          <Text>
+            content...
+          </Text>
+        </BottomSlide>
         <Card
           title={'Location Selection'}
           style={{ marginTop: 20 }}
@@ -144,7 +160,7 @@ export default function DisplayWidgetScreen() {
           <Card.Item label={'Address'} value={'Sichuan Chengdu Tainfu Square G building 3 floor 3 number 108'} />
         </Card>
         <Loading visible={false} size='large' />
-        <View style={{ backgroundColor: '#5858FF', padding: 24, marginTop: 20, width: '100%'}}>
+        <View style={{ backgroundColor: '#5858FF', padding: 24, marginTop: 20, width: '100%' }}>
           <Steps
             total={3}
             current={2}

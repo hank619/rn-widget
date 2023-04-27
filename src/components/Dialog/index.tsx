@@ -41,17 +41,17 @@ export function Dialog(props: DialogProps) {
               <>
                 {!content && children}
               </>
-              {okText && <Button style={[styles.ok, okStyle]} type={'primary'} text={okText} onPress={() => {
+              {okText && <Button style={[styles.ok, okStyle]} type={'primary'} onPress={() => {
                 onOk && onOk();
                 dismiss();
               }}>
-                okText
+                {okText}
               </Button>}
               {cancelText && <Button style={[styles.cancel, cancelStyle]} onPress={() => {
                 onCancel && onCancel();
                 dismiss();
               }}>
-                cancelText
+                {cancelText}
               </Button>}
             </View>
           </TouchableWithoutFeedback>
