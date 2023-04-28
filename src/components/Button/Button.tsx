@@ -8,7 +8,8 @@ import { Button as AntDButton, Text } from '@ant-design/react-native';
 import React from 'react';
 import { Colors } from '../../theme';
 
-export interface IButtonProps extends ButtonProps {
+export type IButtonProps = Omit<ButtonProps, 'type'> & {
+  type?: ButtonProps['type'] | 'link';
   action?: string;
 }
 
@@ -44,7 +45,9 @@ export default function Button(props: IButtonProps) {
       case 'warning':
         return { borderWidth: 1, borderColor: Colors.redMedium};;
       case 'ghost':
-        return { borderWidth: 1, borderColor: Colors.grey};;
+        return { borderWidth: 1, borderColor: Colors.grey};
+      case 'link':
+        return { borderWidth: 1, borderColor: Colors.transparent};
       default:
         return { borderWidth: 1, borderColor: Colors.primary};
     }

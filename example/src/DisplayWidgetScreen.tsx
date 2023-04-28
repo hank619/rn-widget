@@ -11,6 +11,7 @@ import styles from './style';
 
 export default function DisplayWidgetScreen() {
   const [showDialog, setShowDialog] = useState(false);
+  const [showLoading, setShowLoading] = useState(false);
   const [showBottomSlide, setShowBottomSlide] = React.useState(false);
   const previewFiles = [
     'https://raw.githubusercontent.com/matrixyf/pictureRepo/main/20211202181724.png',
@@ -151,6 +152,19 @@ export default function DisplayWidgetScreen() {
             content...
           </Text>
         </BottomSlide>
+        <Button
+          style={{ width: 300, marginVertical: 20 }}
+          type={'primary'}
+          onPress={() => {
+            setShowLoading(true);
+            setTimeout(() => {
+              setShowLoading(false);
+            }, 2000)
+          }}
+        >
+          Show Loading
+        </Button>
+        {showLoading &&  <Loading />}      
         <Card
           title={'Location Selection'}
           style={{ marginTop: 20 }}
@@ -159,7 +173,6 @@ export default function DisplayWidgetScreen() {
           <Card.Item label={'City'} value={'Central Jakarta'} />
           <Card.Item label={'Address'} value={'Sichuan Chengdu Tainfu Square G building 3 floor 3 number 108'} />
         </Card>
-        {/* <Loading /> */}
         <View style={{ backgroundColor: '#5858FF', padding: 24, marginTop: 20, width: '100%' }}>
           <Steps
             total={3}
