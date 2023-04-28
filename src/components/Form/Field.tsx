@@ -8,7 +8,7 @@ import invariant from "invariant";
 import React, { Component } from 'react';
 import FiledContext from "./FieldContext";
 import { View, Text, Platform } from 'react-native';
-import { cloneDeep, get } from 'lodash';
+import { clone, get } from 'lodash';
 import styles from './Field.style';
 
 export interface FieldProps {
@@ -73,7 +73,15 @@ export default class Field extends Component<FieldProps> {
 
   getControlled = (childProps: any) => {
     const { getFieldValue, setFieldValue, setFieldFocus } = this.context || {};
-    const cloneProps = cloneDeep(childProps);
+    let cloneProps;
+    try {
+      // no need to use deepClone
+      cloneProps = clone(childProps);
+    } catch (e) {
+      console.log(`childProps: `, childProps);
+      console.log(`clone childProps failed: `, e);
+      cloneProps = childProps;
+    }
     if (getFieldValue) {
       Object.assign(cloneProps, {
         [`${this.valuePropsName}`]: getFieldValue(this.name),

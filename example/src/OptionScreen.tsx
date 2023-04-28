@@ -3,9 +3,9 @@
  * @Date: 2022-06-16 19:12:04
  * @Description: 
  */
+import React from "react";
 import { View } from "react-native";
 import { Button } from "rn-widget";
-import React from "react";
 
 export default function OptionScreen({navigation}: any) {
 
