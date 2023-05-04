@@ -11,45 +11,45 @@ import { Colors } from '../../theme';
 export type IButtonProps = Omit<ButtonProps, 'type'> & {
   type?: ButtonProps['type'] | 'link';
   action?: string;
-}
+};
 
 export default function Button(props: IButtonProps) {
 
   const { type, style, disabled, children, ...rest } = props;
 
   function getHeight() {
-    return { height: 48};
+    return { height: 48 };
   }
-  
+
   function getBackground() {
     switch (type) {
       case 'primary':
         return { backgroundColor: Colors.primary };
       case 'warning':
-        return { backgroundColor: Colors.redMedium};
+        return { backgroundColor: Colors.redMedium };
       case 'ghost':
-        return { backgroundColor: Colors.transparent};
+        return { backgroundColor: Colors.transparent };
       default:
-        return {backgroundColor: Colors.white};
+        return { backgroundColor: Colors.white };
     }
   }
 
   function getOpacity() {
-    return disabled ? { opacity: 0.3 } : {}; 
+    return disabled ? { opacity: 0.3 } : {};
   }
 
   function getBorder() {
     switch (type) {
       case 'primary':
-        return { borderWidth: 1, borderColor: Colors.primary};;
+        return { borderWidth: 1, borderColor: Colors.primary };;
       case 'warning':
-        return { borderWidth: 1, borderColor: Colors.redMedium};;
+        return { borderWidth: 1, borderColor: Colors.redMedium };;
       case 'ghost':
-        return { borderWidth: 1, borderColor: Colors.grey};
+        return { borderWidth: 1, borderColor: Colors.grey };
       case 'link':
-        return { borderWidth: 1, borderColor: Colors.transparent};
+        return { borderWidth: 1, borderColor: Colors.transparent };
       default:
-        return { borderWidth: 1, borderColor: Colors.primary};
+        return { borderWidth: 1, borderColor: Colors.primary };
     }
   }
 
@@ -58,24 +58,26 @@ export default function Button(props: IButtonProps) {
       case 'primary':
         return { backgroundColor: Colors.primaryMedium };
       case 'warning':
-        return { backgroundColor: Colors.redLight};
+        return { backgroundColor: Colors.redLight };
       case 'ghost':
-        return { backgroundColor: Colors.transparent};
+        return { backgroundColor: Colors.transparent };
+      case 'link':
+        return { backgroundColor: Colors.transparent };
       default:
-        return {backgroundColor: Colors.grey};
+        return { backgroundColor: Colors.grey };
     }
   }
 
   function getTextStyle() {
     switch (type) {
       case 'primary':
-        return { color: Colors.white};
+        return { color: Colors.white };
       case 'warning':
         return { color: Colors.white };
       case 'ghost':
         return { color: Colors.black };
       default:
-        return  {color: Colors.primary};
+        return { color: Colors.primary };
     }
   }
 
@@ -90,7 +92,7 @@ export default function Button(props: IButtonProps) {
         <Text style={getTextStyle()}>
           {children}
         </Text>
-      ): children}
+      ) : children}
     </AntDButton>
   );
 }
