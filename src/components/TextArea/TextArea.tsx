@@ -42,6 +42,11 @@ export default function TextArea(props: ITextAreaProps) {
         {...rest}
         onFocus={onFocus}
         onBlur={onBlur}
+        styles={{
+          input: {
+            backgroundColor: Colors.transparent,
+          }
+        }}
       />
     </View>
 

@@ -6,7 +6,7 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  actionWidgtContainer: {
+  actionWidgetContainer: {
     paddingHorizontal: 12,
   },
   displayWidgetContainer: {

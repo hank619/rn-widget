@@ -18,7 +18,7 @@ export default function ActionWidgetScreen() {
   return (
     <SafeAreaView>
       <ScrollView
-        contentContainerStyle={styles.actionWidgtContainer}
+        contentContainerStyle={styles.actionWidgetContainer}
       >
         <Form
           form={form}
