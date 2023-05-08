@@ -6,7 +6,7 @@
 import React, { useState } from 'react';
 import { SafeAreaView, ScrollView, View, Text } from 'react-native';
 import SimpleToast from 'react-native-simple-toast';
-import { Alert, Button, Card, Dialog, Fold, Loading, Preview, Status, Steps, BottomSlide } from 'rn-widget';
+import { Alert, Button, Card, Dialog, Fold, Loading, Preview, Status, Steps, BottomSlide, Tabs } from 'rn-widget';
 import styles from './style';
 
 export default function DisplayWidgetScreen() {
@@ -173,6 +173,19 @@ export default function DisplayWidgetScreen() {
           <Card.Item label={'City'} value={'Central Jakarta'} />
           <Card.Item label={'Address'} value={'Sichuan Chengdu Tainfu Square G building 3 floor 3 number 108'} />
         </Card>
+        <Tabs
+          tabs={['All', 'To Activate', 'To Claim']}
+        >
+          <View>
+            <Text>Content of First Tab</Text>
+          </View>
+          <View >
+            <Text>Content of Second Tab</Text>
+          </View>
+          <View>
+            <Text>Content of Third Tab</Text>
+          </View>
+        </Tabs>
         <View style={{ backgroundColor: '#5858FF', padding: 24, marginTop: 20, width: '100%' }}>
           <Steps
             total={3}

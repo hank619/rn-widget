@@ -17,6 +17,7 @@ export * from './components/Steps';
 export * from './components/Form';
 export * from './components/BottomSlide';
 export * from './components/TabBar';
+export * from './components/Tabs';
 export { customTheme } from './theme';
 
 import {
