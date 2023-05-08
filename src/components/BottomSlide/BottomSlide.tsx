@@ -52,7 +52,10 @@ export default function BottomSlide(props: IBottomSlideProps) {
           style={{alignSelf: 'flex-end', marginVertical: 20, marginRight: 20,}}
         >
           <TouchableOpacity
-            onPress={dismiss}
+            onPress={() => {
+              console.log(`close`);
+              dismiss();
+            }}
           >
             <Image source={Images.delete}/>
           </TouchableOpacity>
