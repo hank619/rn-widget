@@ -31,7 +31,10 @@ export default function Preview(props: IPreviewProps) {
           <Image source={Images.attachment} />
         </Button>
       </View>
-      <Modal visible={showPreview}>
+      <Modal 
+        visible={showPreview}
+        onRequestClose={() => setShowPreview(false)}  
+      >
         <SafeAreaView style={{ flex: 1, backgroundColor: "transparent"}}>
           <ImageViewer 
             imageUrls={mappedFiles}
