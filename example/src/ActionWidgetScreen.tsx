@@ -7,8 +7,9 @@ import moment from 'moment';
 import React from 'react';
 import { SafeAreaView, ScrollView, Text, TouchableOpacity } from 'react-native';
 import type { Asset } from 'react-native-image-picker';
-import { Button, Checkbox, DatePicker, Field, Form, Input, RadioGroup, Select, TextArea, Upload, useForm } from 'rn-widget';
+import { Button, Checkbox, DatePicker, Field, Form, Input, RadioGroup, Select, TabBar, TextArea, Upload, useForm } from 'rn-widget';
 import styles from './style';
+import { Images } from './Images';
 
 export default function ActionWidgetScreen() {
 
@@ -173,6 +174,28 @@ export default function ActionWidgetScreen() {
                   }, 200);
                 });
               }}
+            />
+          </Field>
+          <Field style={{ marginTop: 20 }} label="TabBar" name='tabBar'>
+            <TabBar
+              tabs={[
+                {
+                  title: 'Home',
+                  icon: Images.icHome,
+                  selectedIcon: Images.icHomeSelected,
+                },
+                {
+                  title: 'Policy',
+                  icon: Images.icPolicy,
+                  selectedIcon: Images.icPolicySelected,
+                  badge: 3,
+                },
+                {
+                  title: 'Me',
+                  icon: Images.icMe,
+                  selectedIcon: Images.icMeSelected,
+                },
+              ]}
             />
           </Field>
           <Button action='submit' style={{ marginTop: 30 }}>click</Button>
