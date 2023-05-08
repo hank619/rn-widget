@@ -7,19 +7,19 @@ import React from "react";
 import { View } from "react-native";
 import { Button } from "rn-widget";
 
-export default function OptionScreen({navigation}: any) {
+export default function OptionScreen({ navigation }: any) {
 
   return (
-    <View style={{padding: 12}}>
-      <Button onPress={() => navigation.navigate("ActionWidgetScreen")} style={{marginVertical: 12}} type="primary">
+    <View style={{ padding: 12 }}>
+      <Button onPress={() => navigation.navigate("ActionWidgetScreen")} style={{ marginVertical: 12 }} type="primary">
         ActionWidgetScreen
       </Button>
-      <Button onPress={() => navigation.navigate("DisplayWidgetScreen")} style={{marginVertical: 12}}>
-      DisplayWidgetScreen
-        </Button>
-      <Button onPress={() => navigation.navigate("DynamicFormScreen")} style={{marginVertical: 12}}>
-      DynamicFormScreen
+      <Button onPress={() => navigation.navigate("DisplayWidgetScreen")} style={{ marginVertical: 12 }} type="primary">
+        DisplayWidgetScreen
+      </Button>
+      <Button onPress={() => navigation.navigate("DynamicFormScreen")} style={{ marginVertical: 12 }} type="primary">
+        DynamicFormScreen
       </Button>
     </View>
-  )
+  );
 }
