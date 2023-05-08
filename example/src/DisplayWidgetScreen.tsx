@@ -5,8 +5,7 @@
  */
 import React, { useState } from 'react';
 import { SafeAreaView, ScrollView, View, Text } from 'react-native';
-import SimpleToast from 'react-native-simple-toast';
-import { Alert, Button, Card, Dialog, Fold, Loading, Preview, Status, Steps, BottomSlide, Tabs } from 'rn-widget';
+import { Alert, Button, Card, Dialog, Fold, Loading, Preview, Status, Steps, BottomSlide, Tabs, Toast } from 'rn-widget';
 import styles from './style';
 
 export default function DisplayWidgetScreen() {
@@ -25,19 +24,19 @@ export default function DisplayWidgetScreen() {
         <Button
           type='primary'
           style={{ marginTop: 20 }}
-          onPress={() => { SimpleToast.show('Submit'); }}
+          onPress={() => { Toast.show('Submit'); }}
         >
           Primary Button
         </Button>
         <Button
           style={{ marginTop: 20 }}
-          onPress={() => { SimpleToast.show('Submit'); }}
+          onPress={() => { Toast.show('Submit'); }}
         >
           Default Button
         </Button>
         <Button
           style={{ marginTop: 20 }}
-          onPress={() => { SimpleToast.show('Submit'); }}
+          onPress={() => { Toast.show('Submit'); }}
           type='ghost'
         >
           Ghost Button
@@ -46,20 +45,20 @@ export default function DisplayWidgetScreen() {
           style={{ marginTop: 20 }}
           type='primary'
           disabled
-          onPress={() => { SimpleToast.show('Submit'); }}
+          onPress={() => { Toast.show('Submit'); }}
         >
           Primary Disabled
         </Button>
         <Button
           style={{ marginTop: 20 }}
           disabled
-          onPress={() => { SimpleToast.show('Submit'); }}
+          onPress={() => { Toast.show('Submit'); }}
         >
           Default Disabled
         </Button>
         <Button
           style={{ marginTop: 20 }}
-          onPress={() => { SimpleToast.show('Submit'); }}
+          onPress={() => { Toast.show('Submit'); }}
           disabled
           type='ghost'
         >
@@ -132,9 +131,9 @@ export default function DisplayWidgetScreen() {
           title={'Before We Start'}
           content={'If you have more than one code, you can add them together (up to 5) to generate this policy with new max coverage and excess. Each code can only be used for add on within 14 days of purchase.'}
           okText={'OK'}
-          onOk={() => SimpleToast.show('OK')}
+          onOk={() => Toast.show('OK')}
           cancelText={'Cancel'}
-          onCancel={() => SimpleToast.show('Cancel')}
+          onCancel={() => Toast.show('Cancel')}
         />
         <Button
           style={{ width: 300, marginVertical: 20 }}

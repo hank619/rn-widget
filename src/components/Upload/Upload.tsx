@@ -8,12 +8,12 @@ import {
   Image, Modal, Text, TouchableOpacity, TouchableWithoutFeedback, View
 } from 'react-native';
 import { Asset, ImagePickerResponse, launchImageLibrary } from 'react-native-image-picker';
-import SimpleToast from 'react-native-simple-toast';
 import { Images } from '../../theme';
 import { getTimeBasedUUID } from '../../util/time';
 import styles from './style';
 import UploadContext from './UploadConext';
 import UploadItem, { Item } from './UploadItem';
+import { Toast } from '../Toast';
 
 
 export type UploadInstance = {
@@ -48,7 +48,7 @@ export default function Upload(props: UploadProps) {
   async function pick() {
     setTouched(true);
     if (!!maxNumber && maxNumber <= pics.length) {
-      SimpleToast.show(
+      Toast.show(
         `Can only upload at most ${maxNumber} pictures`);
       return;
     }
@@ -63,7 +63,7 @@ export default function Upload(props: UploadProps) {
         throw new Error(res.errorMessage);
       }
     } catch (e: any) {
-      SimpleToast.show(e.message);
+      Toast.show(e.message);
     }
   }
 
