@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react';
 import { Image, ScrollView } from 'react-native';
 import Modal from 'react-native-modal';
 import { Colors, Images } from '../../theme';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native';
 
 export interface IBottomSlideProps {
   children: any;
@@ -21,7 +21,10 @@ export default function BottomSlide(props: IBottomSlideProps) {
     <Modal
       testID={'modal'}
       isVisible={visible}
-      onSwipeComplete={dismiss}
+      onSwipeComplete={() => {
+        console.log(`onSwipeComplete`);
+        dismiss();
+      }}
       swipeDirection={['down']}
       style={{
         justifyContent: 'flex-end',
@@ -53,7 +56,6 @@ export default function BottomSlide(props: IBottomSlideProps) {
         >
           <TouchableOpacity
             onPress={() => {
-              console.log(`close`);
               dismiss();
             }}
           >
