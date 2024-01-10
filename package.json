@@ -1,6 +1,6 @@
 {
   "name": "rn-widget",
-  "version": "1.2.1",
+  "version": "2.0.0",
   "description": "An React Native UI library",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -36,13 +36,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/matrixyf/rn-widget",
-  "author": "zhanghong <paperflood1990@gmail.com> (https://github.com/matrixyf)",
+  "repository": "https://github.com/hank619/rn-widget",
+  "author": "zhanghong <paperflood1990@gmail.com> (https://github.com/hank619)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/matrixyf/rn-widget/issues"
+    "url": "https://github.com/hank619/rn-widget/issues"
   },
-  "homepage": "https://github.com/matrixyf/rn-widget#readme",
+  "homepage": "https://github.com/hank619/rn-widget#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

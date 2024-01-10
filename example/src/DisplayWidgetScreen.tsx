@@ -13,9 +13,9 @@ export default function DisplayWidgetScreen() {
   const [showLoading, setShowLoading] = useState(false);
   const [showBottomSlide, setShowBottomSlide] = React.useState(false);
   const previewFiles = [
-    'https://raw.githubusercontent.com/matrixyf/pictureRepo/main/20211202181724.png',
-    'https://raw.githubusercontent.com/matrixyf/pictureRepo/main/20211202181749.png',
-    'https://raw.githubusercontent.com/matrixyf/pictureRepo/main/20211202181828.png'
+    'https://raw.githubusercontent.com/hank619/pictureRepo/main/20211202181724.png',
+    'https://raw.githubusercontent.com/hank619/pictureRepo/main/20211202181749.png',
+    'https://raw.githubusercontent.com/hank619/pictureRepo/main/20211202181828.png'
   ];
 
   return (
