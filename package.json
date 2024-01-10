@@ -1,6 +1,6 @@
 {
   "name": "rn-widget",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "An React Native UI library",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
