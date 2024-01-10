@@ -284,7 +284,7 @@ PODS:
     - React-cxxreact (= 0.64.4)
     - React-jsi (= 0.64.4)
     - React-perflogger (= 0.64.4)
-  - rn-widget (1.2.1):
+  - rn-widget (2.0.0):
     - React-Core
   - RNCPicker (2.4.10):
     - React-Core
@@ -456,7 +456,7 @@ SPEC CHECKSUMS:
   React-RCTVibration: 761849eea2a1abc99d5e4171bae17ab3da3143ac
   React-runtimeexecutor: 5b441857030bb6c3abaa7517f333cb01875ae499
   ReactCommon: b4a65d2d6e9eeffd4b32dde1245962b3f43907d0
-  rn-widget: e4603aa08952799869b0ff04648f263efc2f752f
+  rn-widget: 2ececd0d633ec24d63814b55ded673bfdc6be0f9
   RNCPicker: 0bc2f0a29abcca7b7ed44a2d036aac9ab6d25700
   RNGestureHandler: 071d7a9ad81e8b83fe7663b303d132406a7d8f39
   RNScreens: 40a2cb40a02a609938137a1e0acfbf8fc9eebf19
