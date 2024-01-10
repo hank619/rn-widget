@@ -8,7 +8,7 @@ import invariant from "invariant";
 import React, { Component } from 'react';
 import FiledContext from "./FieldContext";
 import { View, Text, Platform } from 'react-native';
-import { cloneDeep, get } from 'lodash';
+import { get } from 'lodash';
 import styles from './Field.style';
 
 export interface FieldProps {
@@ -71,31 +71,39 @@ export default class Field extends Component<FieldProps> {
     }
   }
 
-  getControlled = (childProps: any) => {
+  getControlled = () => {
     const { getFieldValue, setFieldValue, setFieldFocus } = this.context || {};
-    const cloneProps = cloneDeep(childProps);
+    let controlledProps: any = {};
+    // try {
+    //   // no need to use deepClone
+    //   cloneProps = clone(childProps);
+    // } catch (e) {
+    //   console.log(`childProps: `, childProps);
+    //   console.log(`clone childProps failed: `, e);
+    //   cloneProps = childProps;
+    // }
     if (getFieldValue) {
-      Object.assign(cloneProps, {
+      Object.assign(controlledProps, {
         [`${this.valuePropsName}`]: getFieldValue(this.name),
       });
     }
     if (setFieldValue) {
-      Object.assign(cloneProps, {
+      Object.assign(controlledProps, {
         [`${this.onChangePropsName}`]: (event: any) => {
           setFieldValue(this.name, get(event, this.eventPropsName, event));
         },
       });
     }
     if (setFieldFocus) {
-      Object.assign(cloneProps, {
+      Object.assign(controlledProps, {
         [`${this.onChangeFocusPropsName}`]: (focused: boolean) => {
           setFieldFocus(this.name, focused);
         }
       });
     }
     const [ status ] = this.getStatus();
-    cloneProps.status = status;
-    return cloneProps;
+    controlledProps.status = status;
+    return controlledProps;
   }
 
   onStoreChange = () => {
@@ -142,7 +150,7 @@ export default class Field extends Component<FieldProps> {
       ]}>
         {this.label && <Text style={styles.label}>{this.label}</Text>}
         <>
-          {React.cloneElement(this.children, this.getControlled(this.children.props))}
+          {React.cloneElement(this.children, this.getControlled())}
         </>
 
         {!!validateStatus && validateStatus !== 'success' && !!help && (

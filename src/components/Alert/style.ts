@@ -8,23 +8,22 @@ import { Colors, TypeFaces } from '../../theme';
 
 export default StyleSheet.create({
   container: {
-    width: '100%',
     flexDirection: 'row',
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderRadius: 3,
   },
   success: {
-    backgroundColor: Colors.lightGreen,
+    backgroundColor: Colors.greenLight,
   },
   info: {
-    backgroundColor: Colors.lightBlue,
+    backgroundColor: Colors.blueLight,
   },
   warning: {
-    backgroundColor: Colors.lightYellow,
+    backgroundColor: Colors.yellowLight,
   },
   error: {
-    backgroundColor: Colors.lightRed,
+    backgroundColor: Colors.redLight,
   },
   image: {
     marginRight: 10,

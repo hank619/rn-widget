@@ -3,7 +3,6 @@
  * @Date: 2022-07-04 14:09:01
  * @Description: 
  */
-import { Amount } from "../Amount";
 import { Checkbox } from "../Checkbox";
 import { DatePicker } from "../DatePicker";
 import { Input } from "../Input";
@@ -14,7 +13,11 @@ import { Upload } from "../Upload";
 
 export const ElementMap: Record<string, any> = {
   Input: Input,
-  Amount: Amount,
+  BankCard: Input.BankCard,
+  Phone: Input.Phone,
+  Password: Input.Password,
+  Number: Input.Number,
+  Amount: Input.Amount,
   TextArea: TextArea,
   Checkbox: Checkbox,
   RadioGroup: RadioGroup,

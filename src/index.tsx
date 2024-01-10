@@ -1,4 +1,3 @@
-export * from './components/Amount';
 export * from './components/Input';
 export * from './components/DatePicker';
 export * from './components/Select';
@@ -14,8 +13,12 @@ export * from './components/Checkbox';
 export * from './components/RadioGroup';
 export * from './components/Card';
 export * from './components/Loading';
-export * from './components/Step';
+export * from './components/Steps';
 export * from './components/Form';
+export * from './components/BottomSlide';
+export * from './components/TabBar';
+export * from './components/Tabs';
+export * from './components/Toast';
 export { customTheme } from './theme';
 
 import {

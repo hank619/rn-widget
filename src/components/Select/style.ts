@@ -38,7 +38,7 @@ export default StyleSheet.create({
     borderColor: Colors.yellow,
   },
   error: {
-    borderColor: Colors.red,
+    borderColor: Colors.redMedium,
   },
   // position that relevant to top
   expandTop: {
@@ -105,7 +105,7 @@ export default StyleSheet.create({
     height: 48,
   },
   selected: {
-    backgroundColor: Colors.primarLight,
+    backgroundColor: Colors.primaryLight,
   },
   notSelected: {
     backgroundColor: Colors.white,
@@ -125,6 +125,6 @@ export default StyleSheet.create({
   invalid: {
     marginTop: 7,
     ...TypeFaces.body2,
-    color: Colors.red,
+    color: Colors.redMedium,
   },
 })

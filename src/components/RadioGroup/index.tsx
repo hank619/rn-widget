@@ -14,11 +14,17 @@ import { Images } from "../../theme";
  * @param props 
  * @returns 
  */
-export function RadioGroup(props: RadioGroupProps) {
-  const { style, textStyle, value, onChange, options } = props;
+export interface IRadioGroupProps {
+  value?: any;
+  onChange?: (value: string) => void;
+  options: Array<{ label: string, value: string }>;
+}
+
+export function RadioGroup(props: IRadioGroupProps) {
+  const { value, onChange, options } = props;
 
   return (
-    <View style={[styles.container, style]}>
+    <View style={[styles.container]}>
       {options.map((option, index) => {
         const isSelected = option.value === value;
         const isFirst = index === 0;
@@ -31,7 +37,7 @@ export function RadioGroup(props: RadioGroupProps) {
               }
             }}>
             <View style={[styles.itemContainer, isSelected ? styles.selected: styles.unselected, isFirst ? styles.first: styles.notFirst]}>
-              <Text style={[styles.text, textStyle]}>{option.label}</Text>
+              <Text style={[styles.text]}>{option.label}</Text>
               <Image style={[styles.image, isSelected ? styles.imageSelected: styles.imageUnselected]} source={isSelected ? Images.selected: Images.unselected}/>
             </View>
           </TouchableWithoutFeedback>
@@ -41,10 +47,3 @@ export function RadioGroup(props: RadioGroupProps) {
   );
 }
 
-export interface RadioGroupProps {
-  style?: any;
-  textStyle?: any;
-  value?: any;
-  onChange?: (value: string) => void;
-  options: Array<{ label: string, value: string }>;
-}
